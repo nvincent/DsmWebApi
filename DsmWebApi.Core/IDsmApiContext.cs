@@ -16,6 +16,13 @@
         /// <param name="method">The requested method of the API.</param>
         /// <param name="additionalParameters">Additional parameters of the request.</param>
         /// <returns>The response of the API.</returns>
-        DsmApiResponse Request(string apiPath, string api, string version, string method, IDictionary<string, string> additionalParameters);
+        DsmApiResponse Request(string apiPath, string api, int version, string method, IDictionary<string, string> additionalParameters);
+
+        /// <summary>
+        /// Gets information about an API.
+        /// </summary>
+        /// <param name="api">The name of the API.</param>
+        /// <returns>Information about the API.</returns>
+        DsmApiInfo GetApiInfo(string api);
     }
 }

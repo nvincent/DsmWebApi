@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Net;
@@ -73,7 +74,7 @@
         private CookieContainer CookieContainer { get; set; }
 
         /// <inheritdoc />
-        public DsmApiResponse Request(string apiPath, string api, string version, string method, IDictionary<string, string> additionalParameters)
+        public DsmApiResponse Request(string apiPath, string api, int version, string method, IDictionary<string, string> additionalParameters)
         {
             Uri requestUri = this.BuildRequestUri(apiPath, api, version, method, additionalParameters);
             JObject responseObject;
@@ -84,6 +85,35 @@
 
             DsmApiResponse apiResponse = ConvertResponseObjectToApiResponse(responseObject);
             return apiResponse;
+        }
+
+        /// <inheritdoc />
+        public DsmApiInfo GetApiInfo(string api)
+        {
+            DsmApiResponse response = this.Request(
+                "query.cgi",
+                "SYNO.API.Info",
+                1,
+                "query",
+                new Dictionary<string, string>()
+                {
+                    { "query", api }
+                });
+
+            if (response.Success)
+            {
+                var metadata = response.Data.Children().First().Children().First();
+                string path = metadata["path"].ToString();
+                int minVersion = metadata["minVersion"].Value<int>();
+                int maxVersion = metadata["maxVersion"].Value<int>();
+
+                DsmApiInfo apiInfo = new DsmApiInfo(path, minVersion, maxVersion);
+                return apiInfo;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -127,7 +157,8 @@
             bool success = responseObject.Property(SuccessPropertyName).Value.Value<bool>();
             if (success)
             {
-                JObject data = responseObject.Property(DataPropertyName).Value.Value<JObject>();
+                JProperty dataProperty = responseObject.Property(DataPropertyName);
+                JObject data = dataProperty == null ? null : dataProperty.Value.Value<JObject>();
                 apiResponse = new DsmApiResponse(data);
             }
             else
@@ -149,14 +180,14 @@
         /// <param name="method">The requested method of the API.</param>
         /// <param name="additionalParameters">Additional parameters of the request.</param>
         /// <returns>The full URI to request.</returns>
-        private Uri BuildRequestUri(string apiPath, string api, string version, string method, IDictionary<string, string> additionalParameters)
+        private Uri BuildRequestUri(string apiPath, string api, int version, string method, IDictionary<string, string> additionalParameters)
         {
             Uri requestUri = new Uri(this.BaseUri, apiPath);
             UriBuilder uriBuilder = new UriBuilder(requestUri);
 
             IDictionary<string, string> httpGetParameters = new Dictionary<string, string>();
             httpGetParameters.Add(ApiParameterName, api);
-            httpGetParameters.Add(VersionParameterName, version);
+            httpGetParameters.Add(VersionParameterName, version.ToString(CultureInfo.InvariantCulture));
             httpGetParameters.Add(MethodParameterName, method);
             if (additionalParameters != null && additionalParameters.Count > 0)
             {

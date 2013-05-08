@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using System.Runtime.InteropServices;
+using System.Resources;
 
 [assembly: AssemblyTitle("DsmWebApi.Core")]
 [assembly: AssemblyDescription("")]
@@ -16,6 +16,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 
 [assembly: CLSCompliant(true)]
+
+[assembly: NeutralResourcesLanguage("en-US")]
 
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
