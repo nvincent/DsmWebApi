@@ -1,10 +1,202 @@
 ﻿<Window
     x:Class="DsmWebApi.WpfClient.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:core_views="clr-namespace:DsmWebApi.WpfClient.Core.Views"
+    xmlns:vm="clr-namespace:DsmWebApi.WpfClient.ViewModel"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="MainWindow"
+    Title="DSM Web API Client"
     Height="350"
     Width="525">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="Auto" />
+            <ColumnDefinition
+                Width="*" />
+            <ColumnDefinition
+                Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+            Margin="5"
+            Text="Web API base URI" />
+        <TextBox
+            Grid.Column="1"
+            Margin="5"
+            Text="{Binding WebApiBaseUri}" />
+        <Button
+            Grid.Column="2"
+            Command="{Binding LoadApiContextCommand}"
+            Content="Load Web API"
+            Margin="5" />
+        <TabControl
+            Grid.Row="1"
+            Grid.ColumnSpan="3">
+            <TabItem
+                Header="API">
+                <TabControl>
+                    <TabItem
+                        Header="Authentication">
+                        <core_views:AuthenticationView
+                            DataContext="{Binding AuthenticationViewModel}" />
+                    </TabItem>
+                    <TabItem
+                        Header="Encryption" />
+                    <TabItem
+                        Header="Information">
+                        <core_views:InformationView
+                            DataContext="{Binding InformationViewModel}" />
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+            <TabItem
+                Header="Audio Station">
+                <TabControl>
+                    <TabItem
+                        Header="Information" />
+                </TabControl>
+            </TabItem>
+            <TabItem
+                Header="DSM">
+                <TabControl>
+                    <TabItem
+                        Header="Application" />
+                    <TabItem
+                        Header="Auto Block" />
+                    <TabItem
+                        Header="Connection" />
+                    <TabItem
+                        Header="Encrypt Share" />
+                    <TabItem
+                        Header="Find Me" />
+                    <TabItem
+                        Header="Group" />
+                    <TabItem
+                        Header="Information" />
+                    <TabItem
+                        Header="Log Viewer" />
+                    <TabItem
+                        Header="Network" />
+                    <TabItem
+                        Header="Package" />
+                    <TabItem
+                        Header="Push Notification" />
+                    <TabItem
+                        Header="Service" />
+                    <TabItem
+                        Header="Share" />
+                    <TabItem
+                        Header="System" />
+                    <TabItem
+                        Header="System Loading" />
+                    <TabItem
+                        Header="User" />
+                    <TabItem
+                        Header="Volume" />
+                    <TabItem
+                        Header="iSCSI" />
+                </TabControl>
+            </TabItem>
+            <TabItem
+                Header="DTV">
+                <TabControl>
+                    <TabItem
+                        Header="Channel" />
+                    <TabItem
+                        Header="Channel Scan" />
+                    <TabItem
+                        Header="Controller" />
+                    <TabItem
+                        Header="Program" />
+                    <TabItem
+                        Header="Schedule" />
+                    <TabItem
+                        Header="Statistic" />
+                    <TabItem
+                        Header="Status" />
+                    <TabItem
+                        Header="Streaming" />
+                    <TabItem
+                        Header="Tuner" />
+                </TabControl>
+            </TabItem>
+            <TabItem
+                Header="Download Station">
+                <TabControl>
+                    <TabItem
+                        Header="Information" />
+                    <TabItem
+                        Header="RSS Feed" />
+                    <TabItem
+                        Header="RSS Site" />
+                    <TabItem
+                        Header="Schedule" />
+                    <TabItem
+                        Header="Statistic" />
+                    <TabItem
+                        Header="Task" />
+                </TabControl>
+            </TabItem>
+            <TabItem
+                Header="Video Controller">
+                <TabControl>
+                    <TabItem
+                        Header="Device" />
+                    <TabItem
+                        Header="Password" />
+                    <TabItem
+                        Header="Playback" />
+                    <TabItem
+                        Header="Volume" />
+                </TabControl>
+            </TabItem>
+            <TabItem
+                Header="Video Station">
+                <TabControl>
+                    <TabItem
+                        Header="Poster (Stataion)" />
+                    <TabItem
+                        Header="Audio Track" />
+                    <TabItem
+                        Header="Collection" />
+                    <TabItem
+                        Header="Folder" />
+                    <TabItem
+                        Header="Home Video" />
+                    <TabItem
+                        Header="Information" />
+                    <TabItem
+                        Header="Metadata" />
+                    <TabItem
+                        Header="Movie" />
+                    <TabItem
+                        Header="Plugin Search" />
+                    <TabItem
+                        Header="Poster" />
+                    <TabItem
+                        Header="Rating" />
+                    <TabItem
+                        Header="Streaming" />
+                    <TabItem
+                        Header="Subtitle" />
+                    <TabItem
+                        Header="TV Recording" />
+                    <TabItem
+                        Header="TV Show" />
+                    <TabItem
+                        Header="TV Show Episode" />
+                    <TabItem
+                        Header="Watch Status" />
+                </TabControl>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

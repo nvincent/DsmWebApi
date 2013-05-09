@@ -28,6 +28,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -66,8 +68,20 @@
     <UICulture>en-US</UICulture>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF45">
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\net45\GalaSoft.MvvmLight.Extras.WPF45.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF45">
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\net45\GalaSoft.MvvmLight.WPF45.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -85,6 +99,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AsyncRelayCommand.cs" />
+    <Compile Include="Core\ViewModels\AuthenticationViewModel.cs" />
+    <Compile Include="Core\ViewModels\InformationViewModel.cs" />
+    <Compile Include="Core\Views\AuthenticationView.xaml.cs">
+      <DependentUpon>AuthenticationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Views\InformationView.xaml.cs">
+      <DependentUpon>InformationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\ApiViewModelBase.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Page Include="Core\Views\AuthenticationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\Views\InformationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -116,6 +149,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -147,7 +181,52 @@
       <Link>Properties\CodeAnalysisDictionary.xml</Link>
     </CodeAnalysisDictionary>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AudioStation\ViewModels\" />
+    <Folder Include="AudioStation\Views\" />
+    <Folder Include="DownloadStation\ViewModels\" />
+    <Folder Include="DownloadStation\Views\" />
+    <Folder Include="Dsm\ViewModels\" />
+    <Folder Include="Dsm\Views\" />
+    <Folder Include="Dtv\ViewModels\" />
+    <Folder Include="Dtv\Views\" />
+    <Folder Include="VideoController\ViewModels\" />
+    <Folder Include="VideoController\Views\" />
+    <Folder Include="VideoStation\ViewModels\" />
+    <Folder Include="VideoStation\Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DsmWebApi.AudioStation\DsmWebApi.AudioStation.csproj">
+      <Project>{5dd2bd2a-2fe1-4528-afb5-ac65e8080b18}</Project>
+      <Name>DsmWebApi.AudioStation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DsmWebApi.Core\DsmWebApi.Core.csproj">
+      <Project>{dd636fac-3e66-4b77-8520-babc5cb6bf7d}</Project>
+      <Name>DsmWebApi.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DsmWebApi.DownloadStation\DsmWebApi.DownloadStation.csproj">
+      <Project>{d99335dd-6319-4cbf-9605-39527487e868}</Project>
+      <Name>DsmWebApi.DownloadStation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DsmWebApi.Dsm\DsmWebApi.Dsm.csproj">
+      <Project>{085b9666-e270-4643-92cc-e099c29f8fe1}</Project>
+      <Name>DsmWebApi.Dsm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DsmWebApi.Dtv\DsmWebApi.Dtv.csproj">
+      <Project>{61bbc333-d2df-4a1b-bbc2-07b302cb51d3}</Project>
+      <Name>DsmWebApi.Dtv</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DsmWebApi.VideoController\DsmWebApi.VideoController.csproj">
+      <Project>{b8451406-e400-4379-b9f3-adaaac035686}</Project>
+      <Name>DsmWebApi.VideoController</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DsmWebApi.VideoStation\DsmWebApi.VideoStation.csproj">
+      <Project>{d9c95909-b721-4a10-a8aa-d22d9fdbd431}</Project>
+      <Name>DsmWebApi.VideoStation</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
