@@ -1,5 +1,6 @@
 ﻿namespace DsmWebApi.Core
 {
+    using System;
     using Newtonsoft.Json.Linq;
 
     /// <summary>
@@ -49,6 +50,11 @@
         /// <returns>The <see cref="DsmApiInfo"/> created.</returns>
         public static DsmApiInfo ConvertFrom(JProperty jsonProperty)
         {
+            if (jsonProperty == null)
+            {
+                throw new ArgumentNullException("jsonProperty");
+            }
+
             string name = jsonProperty.Name;
             string path = jsonProperty.Value["path"].ToString();
             int minVersion = jsonProperty.Value["minVersion"].Value<int>();

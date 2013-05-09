@@ -1,6 +1,7 @@
 ﻿namespace DsmWebApi.Core
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Context used to access the API of a DSM system.
@@ -22,6 +23,7 @@
         /// Gets information about all available APIs.
         /// </summary>
         /// <returns>Information about all available APIs.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "The method can perform a time-consuming operation. The method can be perceivably slower than the time that is required to set or get the value of a field.")]
         IEnumerable<DsmApiInfo> GetAllApiInfo();
     }
 }
