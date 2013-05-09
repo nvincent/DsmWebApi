@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="UnsupportedApiMessage" xml:space="preserve">
+    <value>The "{0}" API is not supported by your DSM system.</value>
+    <comment>{0} is the name of the unsupported API</comment>
+  </data>
   <data name="UnsupportedApiVersionMessage" xml:space="preserve">
     <value>The supported version of the authentication API is not in the range of the versions supported by the DSM system (Supported version = {0}, Range = {1}-{2})</value>
     <comment>{0} is the version supported by the API

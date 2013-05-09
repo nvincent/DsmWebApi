@@ -61,6 +61,15 @@ namespace DsmWebApi.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The &quot;{0}&quot; API is not supported by your DSM system..
+        /// </summary>
+        internal static string UnsupportedApiMessage {
+            get {
+                return ResourceManager.GetString("UnsupportedApiMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The supported version of the authentication API is not in the range of the versions supported by the DSM system (Supported version = {0}, Range = {1}-{2}).
         /// </summary>
         internal static string UnsupportedApiVersionMessage {

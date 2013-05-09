@@ -8,7 +8,7 @@
     public interface IDsmApiContext
     {
         /// <summary>
-        /// Sends a request to a DSM Web API.
+        /// Sends a request to a DSM API.
         /// </summary>
         /// <param name="apiPath">The path of the API.</param>
         /// <param name="api">The name of the API.</param>
@@ -19,10 +19,9 @@
         DsmApiResponse Request(string apiPath, string api, int version, string method, IDictionary<string, string> additionalParameters);
 
         /// <summary>
-        /// Gets information about an API.
+        /// Gets information about all available APIs.
         /// </summary>
-        /// <param name="api">The name of the API.</param>
-        /// <returns>Information about the API.</returns>
-        DsmApiInfo GetApiInfo(string api);
+        /// <returns>Information about all available APIs.</returns>
+        IEnumerable<DsmApiInfo> GetAllApiInfo();
     }
 }

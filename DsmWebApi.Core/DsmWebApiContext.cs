@@ -14,39 +14,9 @@
     public class DsmWebApiContext : IDsmApiContext
     {
         /// <summary>
-        /// Name of the HTTP GET parameter containing the name of the requested API.
+        /// Cache field for the return value of the <see cref="GetAllApiInfo"/> method.
         /// </summary>
-        private const string ApiParameterName = "api";
-
-        /// <summary>
-        /// Name of the JSON property containing the data of the response when the request was successful.
-        /// </summary>
-        private const string DataPropertyName = "data";
-
-        /// <summary>
-        /// Name of the JSON property containing the error object in case the request was not successful.
-        /// </summary>
-        private const string ErrorPropertyName = "error";
-
-        /// <summary>
-        /// Name of the JSON property of the error object containing the code of the error.
-        /// </summary>
-        private const string ErrorCodePropertyName = "code";
-
-        /// <summary>
-        /// Name of the HTTP GET parameter containing the requested method of the API.
-        /// </summary>
-        private const string MethodParameterName = "method";
-
-        /// <summary>
-        /// Name of the JSON property containing a boolean indicating whether the request has been successful.
-        /// </summary>
-        private const string SuccessPropertyName = "success";
-
-        /// <summary>
-        /// Name of the HTTP GET parameter containing the version of the requested API.
-        /// </summary>
-        private const string VersionParameterName = "version";
+        private IEnumerable<DsmApiInfo> getAllApiInfoCachedReturnValue;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DsmWebApiContext"/> class.
@@ -88,32 +58,27 @@
         }
 
         /// <inheritdoc />
-        public DsmApiInfo GetApiInfo(string api)
+        public IEnumerable<DsmApiInfo> GetAllApiInfo()
         {
-            DsmApiResponse response = this.Request(
-                "query.cgi",
-                "SYNO.API.Info",
-                1,
-                "query",
-                new Dictionary<string, string>()
+            if (this.getAllApiInfoCachedReturnValue == null)
+            {
+                DsmApiResponse response = this.Request(
+                    "query.cgi",
+                    "SYNO.API.Info",
+                    1,
+                    "query",
+                    new Dictionary<string, string>()
+                    {
+                        { "query", "all" }
+                    });
+
+                if (response.Success)
                 {
-                    { "query", api }
-                });
-
-            if (response.Success)
-            {
-                var metadata = response.Data.Children().First().Children().First();
-                string path = metadata["path"].ToString();
-                int minVersion = metadata["minVersion"].Value<int>();
-                int maxVersion = metadata["maxVersion"].Value<int>();
-
-                DsmApiInfo apiInfo = new DsmApiInfo(path, minVersion, maxVersion);
-                return apiInfo;
+                    this.getAllApiInfoCachedReturnValue = response.Data.Children().OfType<JProperty>().Select(p => DsmApiInfo.ConvertFrom(p));
+                }
             }
-            else
-            {
-                return null;
-            }
+
+            return this.getAllApiInfoCachedReturnValue;
         }
 
         /// <summary>
@@ -154,17 +119,17 @@
         private static DsmApiResponse ConvertResponseObjectToApiResponse(JObject responseObject)
         {
             DsmApiResponse apiResponse;
-            bool success = responseObject.Property(SuccessPropertyName).Value.Value<bool>();
+            bool success = responseObject.Property("success").Value.Value<bool>();
             if (success)
             {
-                JProperty dataProperty = responseObject.Property(DataPropertyName);
+                JProperty dataProperty = responseObject.Property("data");
                 JObject data = dataProperty == null ? null : dataProperty.Value.Value<JObject>();
                 apiResponse = new DsmApiResponse(data);
             }
             else
             {
-                JObject error = responseObject.Property(ErrorPropertyName).Value.Value<JObject>();
-                int errorCode = error.Property(ErrorCodePropertyName).Value.Value<int>();
+                JObject error = responseObject.Property("error").Value.Value<JObject>();
+                int errorCode = error.Property("code").Value.Value<int>();
                 apiResponse = new DsmApiResponse(errorCode);
             }
 
@@ -186,9 +151,9 @@
             UriBuilder uriBuilder = new UriBuilder(requestUri);
 
             IDictionary<string, string> httpGetParameters = new Dictionary<string, string>();
-            httpGetParameters.Add(ApiParameterName, api);
-            httpGetParameters.Add(VersionParameterName, version.ToString(CultureInfo.InvariantCulture));
-            httpGetParameters.Add(MethodParameterName, method);
+            httpGetParameters.Add("api", api);
+            httpGetParameters.Add("version", version.ToString(CultureInfo.InvariantCulture));
+            httpGetParameters.Add("method", method);
             if (additionalParameters != null && additionalParameters.Count > 0)
             {
                 foreach (var additionalParameter in additionalParameters)
