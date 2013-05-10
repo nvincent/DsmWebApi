@@ -79,6 +79,11 @@ namespace DsmWebApi.WpfClient.ViewModel
         public DsmInformationViewModel DsmInformationViewModel { get; private set; }
 
         /// <summary>
+        /// Gets the DSM system API ViewModel.
+        /// </summary>
+        public DsmSystemViewModel DsmSystemViewModel { get; private set; }
+
+        /// <summary>
         /// Gets or sets the context used to access the DSM API.
         /// </summary>
         private IDsmApiContext ApiContext { get; set; }
@@ -95,6 +100,8 @@ namespace DsmWebApi.WpfClient.ViewModel
             this.RaisePropertyChanged(() => this.InformationViewModel);
             this.DsmInformationViewModel = new DsmInformationViewModel(this.ApiContext);
             this.RaisePropertyChanged(() => this.DsmInformationViewModel);
+            this.DsmSystemViewModel = new DsmSystemViewModel(this.ApiContext);
+            this.RaisePropertyChanged(() => this.DsmSystemViewModel);
         }
 
         /// <summary>

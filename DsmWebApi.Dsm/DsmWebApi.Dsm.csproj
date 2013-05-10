@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="DsmInformation.cs" />
     <Compile Include="DsmInformationApi.cs" />
+    <Compile Include="DsmSystemApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

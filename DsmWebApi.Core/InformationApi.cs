@@ -5,7 +5,7 @@
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// The DSM information API.
+    /// The core information API.
     /// </summary>
     public class InformationApi : DsmApiBase
     {
