@@ -5,6 +5,7 @@ namespace DsmWebApi.WpfClient.ViewModel
     using System.Windows.Input;
     using DsmWebApi.Core;
     using DsmWebApi.WpfClient.Core.ViewModels;
+    using DsmWebApi.WpfClient.Dsm.ViewModels;
     using GalaSoft.MvvmLight;
     using GalaSoft.MvvmLight.Messaging;
 
@@ -73,6 +74,11 @@ namespace DsmWebApi.WpfClient.ViewModel
         public InformationViewModel InformationViewModel { get; private set; }
 
         /// <summary>
+        /// Gets the DSM information API ViewModel.
+        /// </summary>
+        public DsmInformationViewModel DsmInformationViewModel { get; private set; }
+
+        /// <summary>
         /// Gets or sets the context used to access the DSM API.
         /// </summary>
         private IDsmApiContext ApiContext { get; set; }
@@ -87,6 +93,8 @@ namespace DsmWebApi.WpfClient.ViewModel
             this.RaisePropertyChanged(() => this.AuthenticationViewModel);
             this.InformationViewModel = new InformationViewModel(this.ApiContext);
             this.RaisePropertyChanged(() => this.InformationViewModel);
+            this.DsmInformationViewModel = new DsmInformationViewModel(this.ApiContext);
+            this.RaisePropertyChanged(() => this.DsmInformationViewModel);
         }
 
         /// <summary>

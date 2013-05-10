@@ -2,6 +2,7 @@
     x:Class="DsmWebApi.WpfClient.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:core_views="clr-namespace:DsmWebApi.WpfClient.Core.Views"
+    xmlns:dsm_views="clr-namespace:DsmWebApi.WpfClient.Dsm.Views"
     xmlns:vm="clr-namespace:DsmWebApi.WpfClient.ViewModel"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="DSM Web API Client"
@@ -39,10 +40,12 @@
             Margin="5" />
         <TabControl
             Grid.Row="1"
-            Grid.ColumnSpan="3">
+            Grid.ColumnSpan="3"
+            TabStripPlacement="Left">
             <TabItem
                 Header="API">
-                <TabControl>
+                <TabControl
+                    TabStripPlacement="Left">
                     <TabItem
                         Header="Authentication">
                         <core_views:AuthenticationView
@@ -59,14 +62,16 @@
             </TabItem>
             <TabItem
                 Header="Audio Station">
-                <TabControl>
+                <TabControl
+                    TabStripPlacement="Left">
                     <TabItem
                         Header="Information" />
                 </TabControl>
             </TabItem>
             <TabItem
                 Header="DSM">
-                <TabControl>
+                <TabControl
+                    TabStripPlacement="Left">
                     <TabItem
                         Header="Application" />
                     <TabItem
@@ -80,7 +85,10 @@
                     <TabItem
                         Header="Group" />
                     <TabItem
-                        Header="Information" />
+                        Header="Information">
+                        <dsm_views:DsmInformationView
+                            DataContext="{Binding DsmInformationViewModel}" />
+                    </TabItem>
                     <TabItem
                         Header="Log Viewer" />
                     <TabItem
@@ -107,7 +115,8 @@
             </TabItem>
             <TabItem
                 Header="DTV">
-                <TabControl>
+                <TabControl
+                    TabStripPlacement="Left">
                     <TabItem
                         Header="Channel" />
                     <TabItem
@@ -130,7 +139,8 @@
             </TabItem>
             <TabItem
                 Header="Download Station">
-                <TabControl>
+                <TabControl
+                    TabStripPlacement="Left">
                     <TabItem
                         Header="Information" />
                     <TabItem
@@ -147,7 +157,8 @@
             </TabItem>
             <TabItem
                 Header="Video Controller">
-                <TabControl>
+                <TabControl
+                    TabStripPlacement="Left">
                     <TabItem
                         Header="Device" />
                     <TabItem
@@ -160,7 +171,8 @@
             </TabItem>
             <TabItem
                 Header="Video Station">
-                <TabControl>
+                <TabControl
+                    TabStripPlacement="Left">
                     <TabItem
                         Header="Poster (Stataion)" />
                     <TabItem
