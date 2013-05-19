@@ -56,9 +56,13 @@
     <Compile Include="Application\DsmApplication.cs" />
     <Compile Include="Application\DsmApplicationApi.cs" />
     <Compile Include="Application\DsmApplicationCollection.cs" />
+    <Compile Include="AutoBlock\DsmAutoBlockConfiguration.cs" />
     <Compile Include="Connection\DsmConnection.cs" />
     <Compile Include="Connection\DsmConnectionApi.cs" />
     <Compile Include="Connection\DsmConnectionCollection.cs" />
+    <Compile Include="AutoBlock\DsmBlockedAddress.cs" />
+    <Compile Include="AutoBlock\DsmAutoBlockApi.cs" />
+    <Compile Include="AutoBlock\DsmBlockedAddressCollection.cs" />
     <Compile Include="EncryptShare\DsmEncryptShareApi.cs" />
     <Compile Include="IScsi\DsmIScsiApi.cs" />
     <Compile Include="IScsi\DsmIScsiConfiguration.cs" />
