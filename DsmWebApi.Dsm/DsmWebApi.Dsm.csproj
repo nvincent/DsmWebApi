@@ -53,6 +53,9 @@
     </CodeAnalysisDictionary>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Group\DsmGroup.cs" />
+    <Compile Include="Group\DsmGroupApi.cs" />
+    <Compile Include="Group\DsmGroupCollection.cs" />
     <Compile Include="Package\DsmPackage.cs" />
     <Compile Include="Package\DsmPackageApi.cs" />
     <Compile Include="Package\DsmPackageCollection.cs" />
