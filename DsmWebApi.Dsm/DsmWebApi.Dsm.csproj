@@ -56,6 +56,11 @@
     <Compile Include="Application\DsmApplication.cs" />
     <Compile Include="Application\DsmApplicationApi.cs" />
     <Compile Include="Application\DsmApplicationCollection.cs" />
+    <Compile Include="SystemLoading\DsmCpuLoad.cs" />
+    <Compile Include="SystemLoading\DsmMemoryLoad.cs" />
+    <Compile Include="SystemLoading\DsmNetworkLoad.cs" />
+    <Compile Include="SystemLoading\DsmSystemLoad.cs" />
+    <Compile Include="SystemLoading\DsmSystemLoadingApi.cs" />
     <Compile Include="FindMe\DsmFindMeApi.cs" />
     <Compile Include="Volume\DsmVolume.cs" />
     <Compile Include="Volume\DsmVolumeApi.cs" />
