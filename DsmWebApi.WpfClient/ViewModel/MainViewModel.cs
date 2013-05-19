@@ -1,8 +1,8 @@
 namespace DsmWebApi.WpfClient.ViewModel
 {
     using System;
+    using System.Collections.ObjectModel;
     using System.Threading.Tasks;
-    using System.Windows;
     using System.Windows.Input;
     using DsmWebApi.Core;
     using DsmWebApi.WpfClient.Core.ViewModels;
@@ -28,6 +28,7 @@ namespace DsmWebApi.WpfClient.ViewModel
             Messenger.Default.Register<GenericMessage<DsmApiResponse>>(this, this.ProcessApiResponse);
 
             this.LoadApiContextCommand = new AsyncRelayCommand(() => Task.Run(() => this.LoadApiContext()));
+            this.LastApiResponses = new ObservableCollection<DsmApiResponse>();
 
             ////if (IsInDesignMode)
             ////{
@@ -65,14 +66,16 @@ namespace DsmWebApi.WpfClient.ViewModel
         }
 
         /// <summary>
+        /// Gets the list of the last API responses received.
+        /// </summary>
+        public ObservableCollection<DsmApiResponse> LastApiResponses { get; private set; }
+
+        #region Core APIs ViewModels
+
+        /// <summary>
         /// Gets the authentication API ViewModel.
         /// </summary>
         public AuthenticationViewModel AuthenticationViewModel { get; private set; }
-
-        /// <summary>
-        /// Gets the information API ViewModel.
-        /// </summary>
-        public InformationViewModel InformationViewModel { get; private set; }
 
         /// <summary>
         /// Gets the encryption API ViewModel.
@@ -80,14 +83,13 @@ namespace DsmWebApi.WpfClient.ViewModel
         public EncryptionViewModel EncryptionViewModel { get; private set; }
 
         /// <summary>
-        /// Gets the DSM user API ViewModel.
+        /// Gets the information API ViewModel.
         /// </summary>
-        public DsmUserViewModel DsmUserViewModel { get; private set; }
+        public InformationViewModel InformationViewModel { get; private set; }
 
-        /// <summary>
-        /// Gets the DSM share API ViewModel.
-        /// </summary>
-        public DsmShareViewModel DsmShareViewModel { get; private set; }
+        #endregion
+
+        #region DSM APIs ViewModels
 
         /// <summary>
         /// Gets the DSM information API ViewModel.
@@ -95,9 +97,21 @@ namespace DsmWebApi.WpfClient.ViewModel
         public DsmInformationViewModel DsmInformationViewModel { get; private set; }
 
         /// <summary>
+        /// Gets the DSM share API ViewModel.
+        /// </summary>
+        public DsmShareViewModel DsmShareViewModel { get; private set; }
+
+        /// <summary>
         /// Gets the DSM system API ViewModel.
         /// </summary>
         public DsmSystemViewModel DsmSystemViewModel { get; private set; }
+
+        /// <summary>
+        /// Gets the DSM user API ViewModel.
+        /// </summary>
+        public DsmUserViewModel DsmUserViewModel { get; private set; }
+
+        #endregion
 
         /// <summary>
         /// Gets or sets the context used to access the DSM API.
@@ -110,20 +124,22 @@ namespace DsmWebApi.WpfClient.ViewModel
         private void LoadApiContext()
         {
             this.ApiContext = new DsmWebApiContext(new Uri(this.WebApiBaseUri));
+
             this.AuthenticationViewModel = new AuthenticationViewModel(this.ApiContext);
             this.RaisePropertyChanged(() => this.AuthenticationViewModel);
-            this.InformationViewModel = new InformationViewModel(this.ApiContext);
-            this.RaisePropertyChanged(() => this.InformationViewModel);
             this.EncryptionViewModel = new EncryptionViewModel(this.ApiContext);
             this.RaisePropertyChanged(() => this.EncryptionViewModel);
-            this.DsmUserViewModel = new DsmUserViewModel(this.ApiContext);
-            this.RaisePropertyChanged(() => this.DsmUserViewModel);
-            this.DsmShareViewModel = new DsmShareViewModel(this.ApiContext);
-            this.RaisePropertyChanged(() => this.DsmShareViewModel);
+            this.InformationViewModel = new InformationViewModel(this.ApiContext);
+            this.RaisePropertyChanged(() => this.InformationViewModel);
+
             this.DsmInformationViewModel = new DsmInformationViewModel(this.ApiContext);
             this.RaisePropertyChanged(() => this.DsmInformationViewModel);
+            this.DsmShareViewModel = new DsmShareViewModel(this.ApiContext);
+            this.RaisePropertyChanged(() => this.DsmShareViewModel);
             this.DsmSystemViewModel = new DsmSystemViewModel(this.ApiContext);
             this.RaisePropertyChanged(() => this.DsmSystemViewModel);
+            this.DsmUserViewModel = new DsmUserViewModel(this.ApiContext);
+            this.RaisePropertyChanged(() => this.DsmUserViewModel);
         }
 
         /// <summary>
@@ -133,14 +149,7 @@ namespace DsmWebApi.WpfClient.ViewModel
         private void ProcessApiResponse(GenericMessage<DsmApiResponse> apiResponseMessage)
         {
             var apiResponse = apiResponseMessage.Content;
-            if (apiResponse.Success)
-            {
-                MessageBox.Show("An API request was executed successfully.", "An API request was executed successfully.", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                MessageBox.Show("Error code : " + apiResponse.ErrorCode.Value, "An error has occurred", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            this.LastApiResponses.Add(apiResponse);
         }
     }
 }

@@ -17,6 +17,8 @@
                 Height="Auto" />
             <RowDefinition
                 Height="*" />
+            <RowDefinition
+                Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition
@@ -222,5 +224,23 @@
                 </TabControl>
             </TabItem>
         </TabControl>
+        <ListView
+            Grid.Row="2"
+            Grid.ColumnSpan="3"
+            ItemsSource="{Binding LastApiResponses}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Text="{Binding Success}" />
+                        <TextBlock
+                            Text=" - " />
+                        <TextBlock
+                            Text="{Binding ErrorCode}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>
