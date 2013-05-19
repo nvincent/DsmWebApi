@@ -59,6 +59,11 @@
     <Compile Include="Connection\DsmConnection.cs" />
     <Compile Include="Connection\DsmConnectionApi.cs" />
     <Compile Include="Connection\DsmConnectionCollection.cs" />
+    <Compile Include="IScsi\DsmIScsiApi.cs" />
+    <Compile Include="IScsi\DsmIScsiConfiguration.cs" />
+    <Compile Include="IScsi\DsmIScsiLun.cs" />
+    <Compile Include="IScsi\DsmIScsiMapping.cs" />
+    <Compile Include="IScsi\DsmIScsiTarget.cs" />
     <Compile Include="LogViewer\DsmLogViewerApi.cs" />
     <Compile Include="SystemLoading\DsmCpuLoad.cs" />
     <Compile Include="SystemLoading\DsmMemoryLoad.cs" />
