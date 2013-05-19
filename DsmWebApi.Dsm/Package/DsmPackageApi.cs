@@ -7,12 +7,12 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// The DSM service API.
+    /// The DSM package API.
     /// </summary>
     public class DsmPackageApi : DsmApiBase
     {
         /// <summary>
-        /// The name of the DSM service API.
+        /// The name of the DSM package API.
         /// </summary>
         private const string DsmPackageApiName = "SYNO.DSM.Package";
 
