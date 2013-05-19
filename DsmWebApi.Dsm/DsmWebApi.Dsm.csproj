@@ -56,6 +56,13 @@
     <Compile Include="Application\DsmApplication.cs" />
     <Compile Include="Application\DsmApplicationApi.cs" />
     <Compile Include="Application\DsmApplicationCollection.cs" />
+    <Compile Include="Network\DsmIPv4Address.cs" />
+    <Compile Include="Network\DsmIPv6Address.cs" />
+    <Compile Include="Network\DsmIPv6AddressScope.cs" />
+    <Compile Include="Network\DsmIPv6AddressScopeConverter.cs" />
+    <Compile Include="Network\DsmNetworkInterface.cs" />
+    <Compile Include="Network\DsmNetworkApi.cs" />
+    <Compile Include="Network\DsmNetworkConfiguration.cs" />
     <Compile Include="Group\DsmGroup.cs" />
     <Compile Include="Group\DsmGroupApi.cs" />
     <Compile Include="Group\DsmGroupCollection.cs" />
