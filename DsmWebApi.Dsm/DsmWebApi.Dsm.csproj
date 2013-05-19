@@ -53,6 +53,10 @@
     </CodeAnalysisDictionary>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Share\DsmShare.cs" />
+    <Compile Include="Share\DsmShareApi.cs" />
+    <Compile Include="Share\DsmShareCollection.cs" />
+    <Compile Include="Share\DsmShareStatus.cs" />
     <Compile Include="User\DsmUser.cs" />
     <Compile Include="User\DsmUserApi.cs" />
     <Compile Include="DsmInformation.cs" />

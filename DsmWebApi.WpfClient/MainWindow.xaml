@@ -103,7 +103,10 @@
                     <TabItem
                         Header="Service" />
                     <TabItem
-                        Header="Share" />
+                        Header="Share">
+                        <dsm_views:DsmShareView
+                            DataContext="{Binding DsmShareViewModel}" />
+                    </TabItem>
                     <TabItem
                         Header="System">
                         <dsm_views:DsmSystemView
