@@ -59,6 +59,7 @@
     <Compile Include="Connection\DsmConnection.cs" />
     <Compile Include="Connection\DsmConnectionApi.cs" />
     <Compile Include="Connection\DsmConnectionCollection.cs" />
+    <Compile Include="EncryptShare\DsmEncryptShareApi.cs" />
     <Compile Include="IScsi\DsmIScsiApi.cs" />
     <Compile Include="IScsi\DsmIScsiConfiguration.cs" />
     <Compile Include="IScsi\DsmIScsiLun.cs" />
