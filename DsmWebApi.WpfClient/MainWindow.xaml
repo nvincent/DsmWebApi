@@ -112,7 +112,10 @@
                     <TabItem
                         Header="System Loading" />
                     <TabItem
-                        Header="User" />
+                        Header="User">
+                        <dsm_views:DsmUserView
+                            DataContext="{Binding DsmUserViewModel}" />
+                    </TabItem>
                     <TabItem
                         Header="Volume" />
                     <TabItem

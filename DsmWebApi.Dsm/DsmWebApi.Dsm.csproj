@@ -53,10 +53,13 @@
     </CodeAnalysisDictionary>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="User\DsmUser.cs" />
+    <Compile Include="User\DsmUserApi.cs" />
     <Compile Include="DsmInformation.cs" />
     <Compile Include="DsmInformationApi.cs" />
     <Compile Include="DsmSystemApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\DsmUserCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DsmWebApi.Core\DsmWebApi.Core.csproj">

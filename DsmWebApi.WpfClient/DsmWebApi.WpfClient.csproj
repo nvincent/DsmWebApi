@@ -121,6 +121,7 @@
     <Compile Include="Core\Views\InformationView.xaml.cs">
       <DependentUpon>InformationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dsm\ViewModels\DsmUserViewModel.cs" />
     <Compile Include="Dsm\ViewModels\DsmSystemViewModel.cs" />
     <Compile Include="Dsm\ViewModels\DsmInformationViewModel.cs" />
     <Compile Include="Dsm\Views\DsmInformationView.xaml.cs">
@@ -128,6 +129,9 @@
     </Compile>
     <Compile Include="Dsm\Views\DsmSystemView.xaml.cs">
       <DependentUpon>DsmSystemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dsm\Views\DsmUserView.xaml.cs">
+      <DependentUpon>DsmUserView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\ApiViewModelBase.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -148,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dsm\Views\DsmSystemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dsm\Views\DsmUserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -80,6 +80,11 @@ namespace DsmWebApi.WpfClient.ViewModel
         public EncryptionViewModel EncryptionViewModel { get; private set; }
 
         /// <summary>
+        /// Gets the DSM user API ViewModel.
+        /// </summary>
+        public DsmUserViewModel DsmUserViewModel { get; private set; }
+
+        /// <summary>
         /// Gets the DSM information API ViewModel.
         /// </summary>
         public DsmInformationViewModel DsmInformationViewModel { get; private set; }
@@ -106,6 +111,8 @@ namespace DsmWebApi.WpfClient.ViewModel
             this.RaisePropertyChanged(() => this.InformationViewModel);
             this.EncryptionViewModel = new EncryptionViewModel(this.ApiContext);
             this.RaisePropertyChanged(() => this.EncryptionViewModel);
+            this.DsmUserViewModel = new DsmUserViewModel(this.ApiContext);
+            this.RaisePropertyChanged(() => this.DsmUserViewModel);
             this.DsmInformationViewModel = new DsmInformationViewModel(this.ApiContext);
             this.RaisePropertyChanged(() => this.DsmInformationViewModel);
             this.DsmSystemViewModel = new DsmSystemViewModel(this.ApiContext);
