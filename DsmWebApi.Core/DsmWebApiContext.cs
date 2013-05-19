@@ -124,7 +124,7 @@
             if (success)
             {
                 JProperty dataProperty = responseObject.Property("data");
-                JObject data = dataProperty == null ? null : dataProperty.Value.Value<JObject>();
+                JToken data = dataProperty == null ? null : dataProperty.Value;
                 apiResponse = new DsmApiResponse(data);
             }
             else

@@ -11,7 +11,7 @@
         /// Initializes a new instance of the <see cref="DsmApiResponse"/> class.
         /// </summary>
         /// <param name="data">The data of the response.</param>
-        public DsmApiResponse(JObject data)
+        public DsmApiResponse(JToken data)
         {
             this.Data = data;
             this.Success = true;
@@ -30,7 +30,7 @@
         /// Gets the data of the response when <see cref="Success"/> is true.
         /// </summary>
         /// <value>Always null when <see cref="Success"/> is false.</value>
-        public JObject Data { get; private set; }
+        public JToken Data { get; private set; }
 
         /// <summary>
         /// Gets the error code of the response when <see cref="Success"/> is false.
