@@ -56,6 +56,9 @@
     <Compile Include="Application\DsmApplication.cs" />
     <Compile Include="Application\DsmApplicationApi.cs" />
     <Compile Include="Application\DsmApplicationCollection.cs" />
+    <Compile Include="Volume\DsmVolume.cs" />
+    <Compile Include="Volume\DsmVolumeApi.cs" />
+    <Compile Include="Volume\DsmVolumeCollection.cs" />
     <Compile Include="Network\DsmIPv4Address.cs" />
     <Compile Include="Network\DsmIPv6Address.cs" />
     <Compile Include="Network\DsmIPv6AddressScope.cs" />
