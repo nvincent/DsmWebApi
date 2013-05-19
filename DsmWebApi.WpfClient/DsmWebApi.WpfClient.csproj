@@ -110,9 +110,13 @@
     </ApplicationDefinition>
     <Compile Include="AsyncRelayCommand.cs" />
     <Compile Include="Core\ViewModels\AuthenticationViewModel.cs" />
+    <Compile Include="Core\ViewModels\EncryptionViewModel.cs" />
     <Compile Include="Core\ViewModels\InformationViewModel.cs" />
     <Compile Include="Core\Views\AuthenticationView.xaml.cs">
       <DependentUpon>AuthenticationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Views\EncryptionView.xaml.cs">
+      <DependentUpon>EncryptionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\Views\InformationView.xaml.cs">
       <DependentUpon>InformationView.xaml</DependentUpon>
@@ -128,6 +132,10 @@
     <Compile Include="ViewModel\ApiViewModelBase.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="Core\Views\AuthenticationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\Views\EncryptionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

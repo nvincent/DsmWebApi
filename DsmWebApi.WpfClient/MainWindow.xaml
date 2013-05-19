@@ -52,7 +52,10 @@
                             DataContext="{Binding AuthenticationViewModel}" />
                     </TabItem>
                     <TabItem
-                        Header="Encryption" />
+                        Header="Encryption">
+                        <core_views:EncryptionView
+                            DataContext="{Binding EncryptionViewModel}" />
+                    </TabItem>
                     <TabItem
                         Header="Information">
                         <core_views:InformationView
