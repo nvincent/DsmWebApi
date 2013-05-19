@@ -1,6 +1,7 @@
 ﻿namespace DsmWebApi.WpfClient.Core.ViewModels
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using System.Windows.Input;
     using DsmWebApi.Core;
     using DsmWebApi.WpfClient.ViewModel;
@@ -39,9 +40,10 @@
         /// <summary>
         /// Gets the information about all available APIs.
         /// </summary>
-        private void QueryAll()
+        /// <returns>The task to await.</returns>
+        private async Task QueryAll()
         {
-            this.AllApiInfo = this.InformationApi.QueryAll();
+            this.AllApiInfo = await this.InformationApi.QueryAll();
             this.RaisePropertyChanged(() => this.AllApiInfo);
         }
     }

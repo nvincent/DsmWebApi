@@ -24,7 +24,7 @@
             }
 
             this.ApiContext = dsmApiContext;
-            this.ApiInfo = this.ApiContext.GetAllApiInfo().SingleOrDefault(ai => ai.Name == api);
+            this.ApiInfo = this.ApiContext.GetAllApiInfo().Result.SingleOrDefault(ai => ai.Name == api);
             if (this.ApiInfo == null)
             {
                 string message = string.Format(

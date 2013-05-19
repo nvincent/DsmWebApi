@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using Newtonsoft.Json.Linq;
 
     /// <summary>
@@ -27,9 +28,9 @@
         /// Gets the information about all available APIs.
         /// </summary>
         /// <returns>The information about all available APIs.</returns>
-        public IEnumerable<DsmApiInfo> QueryAll()
+        public async Task<IEnumerable<DsmApiInfo>> QueryAll()
         {
-            DsmApiResponse response = this.ApiContext.Request(
+            DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
                 InformationApiName,
                 this.ApiInfo.MaxVersion,

@@ -1,6 +1,7 @@
 ﻿namespace DsmWebApi.Core
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// The DSM authentication API.
@@ -27,9 +28,9 @@
         /// <param name="account">The name of the account.</param>
         /// <param name="password">The password of the account.</param>
         /// <returns>The response of the log on request.</returns>
-        public DsmApiResponse LogOn(string account, string password)
+        public async Task<DsmApiResponse> LogOn(string account, string password)
         {
-            DsmApiResponse response = this.ApiContext.Request(
+            DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
                 AuthenticationApiName,
                 this.ApiInfo.MaxVersion,
@@ -46,9 +47,9 @@
         /// Logs off the DSM system.
         /// </summary>
         /// <returns>The response of the log off request.</returns>
-        public DsmApiResponse LogOff()
+        public async Task<DsmApiResponse> LogOff()
         {
-            DsmApiResponse response = this.ApiContext.Request(
+            DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
                 AuthenticationApiName,
                 this.ApiInfo.MaxVersion,

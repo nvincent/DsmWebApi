@@ -6,6 +6,7 @@
     using System.IO;
     using System.Linq;
     using System.Net;
+    using System.Threading.Tasks;
     using Newtonsoft.Json.Linq;
 
     /// <summary>
@@ -44,11 +45,11 @@
         private CookieContainer CookieContainer { get; set; }
 
         /// <inheritdoc />
-        public DsmApiResponse Request(string apiPath, string api, int version, string method, IDictionary<string, string> additionalParameters)
+        public async Task<DsmApiResponse> Request(string apiPath, string api, int version, string method, IDictionary<string, string> additionalParameters)
         {
             Uri requestUri = this.BuildRequestUri(apiPath, api, version, method, additionalParameters);
             JObject responseObject;
-            using (WebResponse response = this.ExecuteRequest(requestUri))
+            using (WebResponse response = await this.ExecuteRequest(requestUri))
             {
                 responseObject = GetJsonObjectFromWebResponse(response);
             }
@@ -58,11 +59,11 @@
         }
 
         /// <inheritdoc />
-        public IEnumerable<DsmApiInfo> GetAllApiInfo()
+        public async Task<IEnumerable<DsmApiInfo>> GetAllApiInfo()
         {
             if (this.getAllApiInfoCachedReturnValue == null)
             {
-                DsmApiResponse response = this.Request(
+                DsmApiResponse response = await this.Request(
                     "query.cgi",
                     "SYNO.API.Info",
                     1,
@@ -176,12 +177,11 @@
         /// </summary>
         /// <param name="requestUri">The URI of the request.</param>
         /// <returns>The response of the request.</returns>
-        private WebResponse ExecuteRequest(Uri requestUri)
+        private async Task<WebResponse> ExecuteRequest(Uri requestUri)
         {
             var webRequest = HttpWebRequest.CreateHttp(requestUri);
             webRequest.CookieContainer = this.CookieContainer;
-            var asyncResult = webRequest.BeginGetResponse(null, null);
-            var response = (HttpWebResponse)webRequest.EndGetResponse(asyncResult);
+            var response = (HttpWebResponse)await webRequest.GetResponseAsync();
             this.CookieContainer.Add(this.BaseUri, response.Cookies);
             return response;
         }

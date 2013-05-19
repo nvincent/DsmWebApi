@@ -1,5 +1,6 @@
 ﻿namespace DsmWebApi.WpfClient.Dsm.ViewModels
 {
+    using System.Threading.Tasks;
     using System.Windows.Input;
     using DsmWebApi.Core;
     using DsmWebApi.Dsm;
@@ -53,9 +54,10 @@
         /// <summary>
         /// Reboots the DSM system.
         /// </summary>
-        private void Reboot()
+        /// <returns>The task to await.</returns>
+        private async Task Reboot()
         {
-            var rebootResponse = this.DsmSystemApi.Reboot();
+            var rebootResponse = await this.DsmSystemApi.Reboot();
             GenericMessage<DsmApiResponse> message = new GenericMessage<DsmApiResponse>(rebootResponse);
             Messenger.Default.Send(message);
         }
@@ -63,9 +65,10 @@
         /// <summary>
         /// Shutdowns the DSM system.
         /// </summary>
-        private void Shutdown()
+        /// <returns>The task to await.</returns>
+        private async Task Shutdown()
         {
-            var shutdownResponse = this.DsmSystemApi.Shutdown();
+            var shutdownResponse = await this.DsmSystemApi.Shutdown();
             GenericMessage<DsmApiResponse> message = new GenericMessage<DsmApiResponse>(shutdownResponse);
             Messenger.Default.Send(message);
         }
@@ -73,9 +76,10 @@
         /// <summary>
         /// Pings the DSM system.
         /// </summary>
-        private void PingPong()
+        /// <returns>The task to await.</returns>
+        private async Task PingPong()
         {
-            this.BootDone = this.DsmSystemApi.PingPong();
+            this.BootDone = await this.DsmSystemApi.PingPong();
             this.RaisePropertyChanged(() => this.BootDone);
         }
     }

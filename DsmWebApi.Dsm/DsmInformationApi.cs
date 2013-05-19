@@ -1,6 +1,7 @@
 ﻿namespace DsmWebApi.Dsm
 {
     using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using DsmWebApi.Core;
     using Newtonsoft.Json;
 
@@ -28,9 +29,9 @@
         /// </summary>
         /// <returns>The information about the DSM system.</returns>
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "The method can perform a time-consuming operation. The method can be perceivably slower than the time that is required to set or get the value of a field.")]
-        public DsmInformation GetInfo()
+        public async Task<DsmInformation> GetInfo()
         {
-            DsmApiResponse response = this.ApiContext.Request(
+            DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
                 DsmInformationApiName,
                 this.ApiInfo.MaxVersion,

@@ -1,5 +1,6 @@
 ﻿namespace DsmWebApi.WpfClient.Dsm.ViewModels
 {
+    using System.Threading.Tasks;
     using System.Windows.Input;
     using DsmWebApi.Core;
     using DsmWebApi.Dsm;
@@ -39,9 +40,10 @@
         /// <summary>
         /// Gets the information about the DSM system.
         /// </summary>
-        private void GetInfo()
+        /// <returns>The task to await.</returns>
+        private async Task GetInfo()
         {
-            this.DsmInformation = this.DsmInformationApi.GetInfo();
+            this.DsmInformation = await this.DsmInformationApi.GetInfo();
             this.RaisePropertyChanged(() => this.DsmInformation);
         }
     }

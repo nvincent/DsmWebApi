@@ -30,7 +30,7 @@
         /// </summary>
         /// <param name="execute">The execution logic.</param>
         /// <exception cref="ArgumentNullException">If the <paramref name="execute"/> argument is null.</exception>
-        public AsyncRelayCommand(Action execute)
+        public AsyncRelayCommand(Func<Task> execute)
             : this(execute, null)
         {
         }
@@ -41,14 +41,21 @@
         /// <param name="execute">The execution logic.</param>
         /// <param name="canExecute">The execution status logic.</param>
         /// <exception cref="ArgumentNullException">If the <paramref name="execute"/> argument is null.</exception>
-        public AsyncRelayCommand(Action execute, Func<bool> canExecute)
+        public AsyncRelayCommand(Func<Task> execute, Func<bool> canExecute)
         {
             if (execute == null)
             {
                 throw new ArgumentNullException("execute");
             }
 
-            this.execute = async () => await Task.Run(execute).ContinueWith(t => this.EndExecute());
+            this.execute = async () =>
+            {
+                this.executing = true;
+                this.RaiseCanExecuteChanged();
+                await execute();
+                this.executing = false;
+                this.RaiseCanExecuteChanged();
+            };
             if (canExecute == null)
             {
                 this.canExecute = () => true;
@@ -80,8 +87,6 @@
         /// <param name="parameter">This parameter will always be ignored.</param>
         public virtual void Execute(object parameter)
         {
-            this.executing = true;
-            this.RaiseCanExecuteChanged();
             this.execute();
         }
 
@@ -95,18 +100,6 @@
             {
                 handler(this, new EventArgs());
             }
-        }
-
-        /// <summary>
-        /// Ends the execution of the command.
-        /// </summary>
-        private void EndExecute()
-        {
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                this.executing = false;
-                this.RaiseCanExecuteChanged();
-            });
         }
     }
 }

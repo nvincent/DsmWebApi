@@ -1,5 +1,6 @@
 ﻿namespace DsmWebApi.WpfClient.Core.ViewModels
 {
+    using System.Threading.Tasks;
     using System.Windows.Input;
     using DsmWebApi.Core;
     using DsmWebApi.WpfClient.ViewModel;
@@ -90,9 +91,10 @@
         /// <summary>
         /// Logs on the DSM system.
         /// </summary>
-        private void LogOn()
+        /// <returns>The task to await.</returns>
+        private async Task LogOn()
         {
-            var logOnResponse = this.AuthenticationApi.LogOn(this.Account, this.Password);
+            var logOnResponse = await this.AuthenticationApi.LogOn(this.Account, this.Password);
             GenericMessage<DsmApiResponse> message = new GenericMessage<DsmApiResponse>(logOnResponse);
             Messenger.Default.Send(message);
         }
@@ -100,9 +102,10 @@
         /// <summary>
         /// Logs off the DSM system.
         /// </summary>
-        private void LogOff()
+        /// <returns>The task to await.</returns>
+        private async Task LogOff()
         {
-            var logOffResponse = this.AuthenticationApi.LogOff();
+            var logOffResponse = await this.AuthenticationApi.LogOff();
             GenericMessage<DsmApiResponse> message = new GenericMessage<DsmApiResponse>(logOffResponse);
             Messenger.Default.Send(message);
         }

@@ -1,5 +1,6 @@
 ﻿namespace DsmWebApi.Dsm
 {
+    using System.Threading.Tasks;
     using DsmWebApi.Core;
     using Newtonsoft.Json.Linq;
 
@@ -26,9 +27,9 @@
         /// Reboots the DSM system.
         /// </summary>
         /// <returns>The response of the reboot request.</returns>
-        public DsmApiResponse Reboot()
+        public async Task<DsmApiResponse> Reboot()
         {
-            DsmApiResponse response = this.ApiContext.Request(
+            DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
                 DsmSystemApiName,
                 this.ApiInfo.MaxVersion,
@@ -41,9 +42,9 @@
         /// Shutdowns the DSM system.
         /// </summary>
         /// <returns>The response of the shutdown request.</returns>
-        public DsmApiResponse Shutdown()
+        public async Task<DsmApiResponse> Shutdown()
         {
-            DsmApiResponse response = this.ApiContext.Request(
+            DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
                 DsmSystemApiName,
                 this.ApiInfo.MaxVersion,
@@ -56,9 +57,9 @@
         /// Pings the DSM system and makes sure the boot sequence is over.
         /// </summary>
         /// <returns>A value indicating whether the boot sequence is over.</returns>
-        public bool PingPong()
+        public async Task<bool> PingPong()
         {
-            DsmApiResponse response = this.ApiContext.Request(
+            DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
                 DsmSystemApiName,
                 this.ApiInfo.MaxVersion,

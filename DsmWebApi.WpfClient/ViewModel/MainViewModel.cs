@@ -1,6 +1,7 @@
 namespace DsmWebApi.WpfClient.ViewModel
 {
     using System;
+    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Input;
     using DsmWebApi.Core;
@@ -26,7 +27,7 @@ namespace DsmWebApi.WpfClient.ViewModel
         {
             Messenger.Default.Register<GenericMessage<DsmApiResponse>>(this, this.ProcessApiResponse);
 
-            this.LoadApiContextCommand = new AsyncRelayCommand(this.LoadApiContext);
+            this.LoadApiContextCommand = new AsyncRelayCommand(() => Task.Run(() => this.LoadApiContext()));
 
             ////if (IsInDesignMode)
             ////{
