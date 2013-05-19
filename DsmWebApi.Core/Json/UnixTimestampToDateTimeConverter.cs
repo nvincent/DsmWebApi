@@ -6,7 +6,7 @@
     /// <summary>
     /// JSON converter that converts integer values representing an UNIX timestamp to a UTC <see cref="DateTime"/> object.
     /// </summary>
-    public class UnixTimestampToUtcDateTimeConverter : JsonConverter
+    public class UnixTimestampToDateTimeConverter : JsonConverter
     {
         /// <inheritdoc />
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
@@ -19,7 +19,7 @@
             long? seconds = reader.Value as long?;
             if (seconds.HasValue)
             {
-                return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(seconds.Value);
+                return new DateTime(1970, 1, 1).AddSeconds(seconds.Value);
             }
 
             return null;

@@ -62,7 +62,7 @@
     <Compile Include="DsmApiResponse.cs" />
     <Compile Include="IDsmApiContext.cs" />
     <Compile Include="InformationApi.cs" />
-    <Compile Include="Json\UnixTimestampToUtcDateTimeConverter.cs" />
+    <Compile Include="Json\UnixTimestampToDateTimeConverter.cs" />
     <Compile Include="Json\DsmFormatDateTimeConverter.cs" />
     <Compile Include="Json\SecondsToTimeSpanConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

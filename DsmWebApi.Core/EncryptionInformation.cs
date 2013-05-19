@@ -31,7 +31,7 @@
         /// Gets or sets UTC date and time on the server.
         /// </summary>
         [JsonProperty("server_time")]
-        [JsonConverter(typeof(UnixTimestampToUtcDateTimeConverter))]
+        [JsonConverter(typeof(UnixTimestampToDateTimeConverter))]
         public DateTime ServerTime { get; set; }
     }
 }
