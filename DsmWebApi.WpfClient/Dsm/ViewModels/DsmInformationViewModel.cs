@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
     using DsmWebApi.Core;
-    using DsmWebApi.Dsm;
+    using DsmWebApi.Dsm.Info;
     using DsmWebApi.WpfClient.ViewModel;
 
     /// <summary>

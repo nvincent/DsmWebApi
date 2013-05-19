@@ -1,4 +1,4 @@
-﻿namespace DsmWebApi.Dsm
+﻿namespace DsmWebApi.Dsm.DsmSystem
 {
     using System.Threading.Tasks;
     using DsmWebApi.Core;

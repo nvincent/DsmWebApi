@@ -1,4 +1,4 @@
-﻿namespace DsmWebApi.Dsm
+﻿namespace DsmWebApi.Dsm.Info
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
