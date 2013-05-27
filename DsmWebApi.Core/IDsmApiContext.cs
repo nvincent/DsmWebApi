@@ -10,6 +10,12 @@
     public interface IDsmApiContext
     {
         /// <summary>
+        /// Loads information about all available APIs.
+        /// </summary>
+        /// <returns>The task that loads all available APIs.</returns>
+        Task LoadAllApiInfo();
+
+        /// <summary>
         /// Sends a request to a DSM API.
         /// </summary>
         /// <param name="apiPath">The path of the API.</param>
@@ -23,8 +29,6 @@
         /// <summary>
         /// Gets information about all available APIs.
         /// </summary>
-        /// <returns>Information about all available APIs.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "The method can perform a time-consuming operation. The method can be perceivably slower than the time that is required to set or get the value of a field.")]
-        Task<IEnumerable<DsmApiInfo>> GetAllApiInfo();
+        IEnumerable<DsmApiInfo> AllApiInfo { get; }
     }
 }

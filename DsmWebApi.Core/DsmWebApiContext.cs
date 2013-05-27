@@ -15,9 +15,9 @@
     public class DsmWebApiContext : IDsmApiContext
     {
         /// <summary>
-        /// Cache field for the return value of the <see cref="GetAllApiInfo"/> method.
+        /// Storage field for the <see cref="AllApiInfo"/> property.
         /// </summary>
-        private IEnumerable<DsmApiInfo> getAllApiInfoCachedReturnValue;
+        private IEnumerable<DsmApiInfo> allApiInfo;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DsmWebApiContext"/> class.
@@ -32,6 +32,12 @@
 
             this.BaseUri = webApiBaseUri;
             this.CookieContainer = new CookieContainer();
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<DsmApiInfo> AllApiInfo
+        {
+            get { return this.allApiInfo; }
         }
 
         /// <summary>
@@ -59,9 +65,9 @@
         }
 
         /// <inheritdoc />
-        public async Task<IEnumerable<DsmApiInfo>> GetAllApiInfo()
+        public async Task LoadAllApiInfo()
         {
-            if (this.getAllApiInfoCachedReturnValue == null)
+            if (this.allApiInfo == null)
             {
                 DsmApiResponse response = await this.Request(
                     "query.cgi",
@@ -75,11 +81,9 @@
 
                 if (response.Success)
                 {
-                    this.getAllApiInfoCachedReturnValue = response.Data.Children().OfType<JProperty>().Select(p => DsmApiInfo.ConvertFrom(p));
+                    this.allApiInfo = response.Data.Children().OfType<JProperty>().Select(p => DsmApiInfo.ConvertFrom(p));
                 }
             }
-
-            return this.getAllApiInfoCachedReturnValue;
         }
 
         /// <summary>
