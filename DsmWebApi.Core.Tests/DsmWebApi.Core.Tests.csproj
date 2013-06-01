@@ -80,6 +80,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AuthenticationApiUnitTest.cs" />
+    <Compile Include="EncryptionApiUnitTest.cs" />
     <Compile Include="DsmApiResponseUnitTest.cs" />
     <Compile Include="DsmApiInfoUnitTest.cs" />
     <Compile Include="DsmApiBaseUnitTest.cs" />
