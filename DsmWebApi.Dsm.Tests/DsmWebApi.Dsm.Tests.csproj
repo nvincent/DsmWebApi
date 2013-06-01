@@ -68,6 +68,7 @@
       <HintPath>..\packages\Newtonsoft.Json.5.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Net" />
   </ItemGroup>
   <Choose>
@@ -83,6 +84,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DsmAutoBlockApiUnitTest.cs" />
+    <Compile Include="DsmConnectionApiUnitTest.cs" />
+    <Compile Include="DsmSystemApiUnitTest.cs" />
+    <Compile Include="DsmEncryptShareApiUnitTest.cs" />
+    <Compile Include="DsmFindMeApiUnitTest.cs" />
+    <Compile Include="DsmGroupApiUnitTest.cs" />
+    <Compile Include="DsmInformationApiUnitTest.cs" />
+    <Compile Include="DsmIScsiApiUnitTest.cs" />
+    <Compile Include="DsmLogViewerApiUnitTest.cs" />
+    <Compile Include="DsmNetworkApiUnitTest.cs" />
+    <Compile Include="DsmPackageApiUnitTest.cs" />
+    <Compile Include="DsmServiceApiUnitTest.cs" />
     <Compile Include="DsmShareApiUnitTest.cs" />
     <Compile Include="DsmSystemLoadingApiUnitTest.cs" />
     <Compile Include="DsmUserApiUnitTest.cs" />

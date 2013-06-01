@@ -19,7 +19,7 @@
             }
 
             string value = reader.Value.ToString();
-            var dateTimeValue = DateTime.ParseExact(value, "ddd MMM d HH:mm:ss yyyy", CultureInfo.CurrentCulture);
+            var dateTimeValue = DateTime.ParseExact(value, "ddd MMM d HH:mm:ss yyyy", CultureInfo.InvariantCulture, DateTimeStyles.AllowInnerWhite);
             return dateTimeValue;
         }
 
