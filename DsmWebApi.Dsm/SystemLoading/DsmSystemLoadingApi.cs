@@ -1,5 +1,6 @@
 ﻿namespace DsmWebApi.Dsm.SystemLoading
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using DsmWebApi.Core;
     using Newtonsoft.Json;
@@ -27,6 +28,7 @@
         /// Gets the information about the system load.
         /// </summary>
         /// <returns>The information about the system load.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "The method can perform a time-consuming operation. The method can be perceivably slower than the time that is required to set or get the value of a field.")]
         public async Task<DsmSystemLoad> GetInfo()
         {
             DsmApiResponse response = await this.ApiContext.Request(

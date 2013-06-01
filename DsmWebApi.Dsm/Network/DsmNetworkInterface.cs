@@ -24,18 +24,18 @@
         /// Gets or sets the type of the network interface.
         /// </summary>
         [JsonProperty("type")]
-        public string Type { get; set; }
+        public string NetworkInterfaceType { get; set; }
 
         /// <summary>
         /// Gets or sets the collection of all IPv4 addresses of the network interfaces.
         /// </summary>
         [JsonProperty("ip")]
-        public IEnumerable<DsmIPv4Address> IPv4Adresses { get; set; }
+        public IEnumerable<DsmIPv4Address> IPv4Addresses { get; set; }
 
         /// <summary>
         /// Gets or sets the collection of all IPv6 addresses of the network interfaces.
         /// </summary>
         [JsonProperty("ipv6")]
-        public IEnumerable<DsmIPv6Address> IPv6Adresses { get; set; }
+        public IEnumerable<DsmIPv6Address> IPv6Addresses { get; set; }
     }
 }

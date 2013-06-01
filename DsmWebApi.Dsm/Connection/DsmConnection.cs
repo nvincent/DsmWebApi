@@ -19,7 +19,7 @@
         /// Gets or sets the type of the connection.
         /// </summary>
         [JsonProperty("type")]
-        public string Type { get; set; }
+        public string ConnectionType { get; set; }
 
         /// <summary>
         /// Gets or sets the activity of the connection.

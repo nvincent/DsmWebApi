@@ -6,7 +6,15 @@
     </Unrecognized>
     <Recognized>
       <Word>Api</Word>
+      <Word>Cpu</Word>
       <Word>Dsm</Word>
+      <Word>Irq</Word>
+      <Word>Lun</Word>
+      <Word>Luns</Word>
+      <Word>Pv</Word>
+      <Word>Scsi</Word>
+      <Word>Unmount</Word>
+      <Word>Unmounted</Word>
     </Recognized>
     <Deprecated>
       <!--<Term PreferredAlternate=""></Term>-->

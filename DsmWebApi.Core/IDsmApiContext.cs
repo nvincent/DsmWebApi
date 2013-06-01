@@ -10,6 +10,11 @@
     public interface IDsmApiContext
     {
         /// <summary>
+        /// Gets information about all available APIs.
+        /// </summary>
+        IEnumerable<DsmApiInfo> AllApiInfo { get; }
+
+        /// <summary>
         /// Loads information about all available APIs.
         /// </summary>
         /// <returns>The task that loads all available APIs.</returns>
@@ -25,10 +30,5 @@
         /// <param name="additionalParameters">Additional parameters of the request.</param>
         /// <returns>The response of the API.</returns>
         Task<DsmApiResponse> Request(string apiPath, string api, int version, string method, IDictionary<string, string> additionalParameters);
-
-        /// <summary>
-        /// Gets information about all available APIs.
-        /// </summary>
-        IEnumerable<DsmApiInfo> AllApiInfo { get; }
     }
 }

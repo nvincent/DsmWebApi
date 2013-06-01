@@ -1,17 +1,31 @@
 ﻿namespace DsmWebApi.Dsm.Connection
 {
+    using System.Collections;
     using System.Collections.Generic;
     using Newtonsoft.Json;
 
     /// <summary>
     /// A collection of connections on a DSM system.
     /// </summary>
-    public class DsmConnectionCollection
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
+    public class DsmConnectionCollection : IEnumerable<DsmConnection>
     {
         /// <summary>
-        /// Gets or sets the collection of queried connections.
+        /// The collection of queried connections.
         /// </summary>
         [JsonProperty("connections")]
-        public IEnumerable<DsmConnection> Connections { get; set; }
+        private IEnumerable<DsmConnection> connections = null;
+
+        /// <inheritdoc />
+        public IEnumerator<DsmConnection> GetEnumerator()
+        {
+            return this.connections.GetEnumerator();
+        }
+
+        /// <inheritdoc />
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.connections.GetEnumerator();
+        }
     }
 }

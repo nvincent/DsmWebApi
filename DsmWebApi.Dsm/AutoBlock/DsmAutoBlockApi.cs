@@ -1,6 +1,7 @@
 ﻿namespace DsmWebApi.Dsm.AutoBlock
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Threading.Tasks;
     using DsmWebApi.Core;
@@ -49,6 +50,7 @@
         /// Gets the Auto Block configuration.
         /// </summary>
         /// <returns>The Auto Block configuration.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "The method can perform a time-consuming operation. The method can be perceivably slower than the time that is required to set or get the value of a field.")]
         public async Task<DsmAutoBlockConfiguration> GetConfig()
         {
             DsmApiResponse response = await this.ApiContext.Request(

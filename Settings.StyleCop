@@ -2,7 +2,9 @@
   <GlobalSettings>
     <CollectionProperty Name="RecognizedWords">
       <Value>Dsm</Value>
+      <Value>Pv</Value>
       <Value>Synology's</Value>
+      <Value>unmount</Value>
       <Value>webapi</Value>
       <Value>xaml</Value>
     </CollectionProperty>

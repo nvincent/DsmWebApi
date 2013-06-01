@@ -27,10 +27,10 @@
         public string HostName { get; set; }
 
         /// <summary>
-        /// Gets or sets the work group of the DSM system.
+        /// Gets or sets the workgroup of the DSM system.
         /// </summary>
         [JsonProperty("workgroup")]
-        public string WorkGroup { get; set; }
+        public string Workgroup { get; set; }
 
         /// <summary>
         /// Gets or sets the collection of all network interfaces.

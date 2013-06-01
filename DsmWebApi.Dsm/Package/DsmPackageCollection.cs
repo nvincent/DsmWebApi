@@ -1,13 +1,21 @@
 ﻿namespace DsmWebApi.Dsm.Package
 {
+    using System.Collections;
     using System.Collections.Generic;
     using Newtonsoft.Json;
 
     /// <summary>
     /// A collection of packages on a DSM system.
     /// </summary>
-    public class DsmPackageCollection
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
+    public class DsmPackageCollection : IEnumerable<DsmPackage>
     {
+        /// <summary>
+        /// The collection of queried packages.
+        /// </summary>
+        [JsonProperty("packages")]
+        private IEnumerable<DsmPackage> packages = null;
+
         /// <summary>
         /// Gets or sets the offset of the <see cref="Packages"/> collection in the collection of all packages.
         /// </summary>
@@ -20,10 +28,16 @@
         [JsonProperty("total")]
         public int Total { get; set; }
 
-        /// <summary>
-        /// Gets or sets the collection of queried packages.
-        /// </summary>
-        [JsonProperty("packages")]
-        public IEnumerable<DsmPackage> Packages { get; set; }
+        /// <inheritdoc />
+        public IEnumerator<DsmPackage> GetEnumerator()
+        {
+            return this.packages.GetEnumerator();
+        }
+
+        /// <inheritdoc />
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.packages.GetEnumerator();
+        }
     }
 }
