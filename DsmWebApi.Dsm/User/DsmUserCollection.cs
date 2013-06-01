@@ -17,7 +17,7 @@
         private IEnumerable<DsmUser> users = null;
 
         /// <summary>
-        /// Gets or sets the offset of the <see cref="Users"/> collection in the collection of all users.
+        /// Gets or sets the offset of the retrieved users collection.
         /// </summary>
         [JsonProperty("offset")]
         public int Offset { get; set; }

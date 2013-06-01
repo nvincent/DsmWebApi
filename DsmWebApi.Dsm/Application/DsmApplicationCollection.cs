@@ -17,7 +17,7 @@
         private IEnumerable<DsmApplication> applications = null;
 
         /// <summary>
-        /// Gets or sets the offset of the <see cref="Applications"/> collection in the collection of all applications.
+        /// Gets or sets the offset of the retrieved applications collection.
         /// </summary>
         [JsonProperty("offset")]
         public int Offset { get; set; }

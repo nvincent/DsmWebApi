@@ -17,7 +17,7 @@
         private IEnumerable<DsmBlockedAddress> blockedAddresses = null;
 
         /// <summary>
-        /// Gets or sets the offset of the <see cref="BlockedAddresses"/> collection in the collection of all blocked addresses.
+        /// Gets or sets the offset of the retrieved blocked addresses collection.
         /// </summary>
         [JsonProperty("offset")]
         public int Offset { get; set; }

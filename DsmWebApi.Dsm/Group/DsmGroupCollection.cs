@@ -17,7 +17,7 @@
         private IEnumerable<DsmGroup> groups = null;
 
         /// <summary>
-        /// Gets or sets the offset of the <see cref="Groups"/> collection in the collection of all groups.
+        /// Gets or sets the offset of the retrieved groups collection.
         /// </summary>
         [JsonProperty("offset")]
         public int Offset { get; set; }

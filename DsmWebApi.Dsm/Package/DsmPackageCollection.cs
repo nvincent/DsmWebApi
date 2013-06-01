@@ -17,7 +17,7 @@
         private IEnumerable<DsmPackage> packages = null;
 
         /// <summary>
-        /// Gets or sets the offset of the <see cref="Packages"/> collection in the collection of all packages.
+        /// Gets or sets the offset of the retrieved packages collection.
         /// </summary>
         [JsonProperty("offset")]
         public int Offset { get; set; }

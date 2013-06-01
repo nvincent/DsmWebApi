@@ -17,7 +17,7 @@
         private IEnumerable<DsmShare> shares = null;
 
         /// <summary>
-        /// Gets or sets the offset of the <see cref="Shares"/> collection in the collection of all shares.
+        /// Gets or sets the offset of the retrieved shares collection.
         /// </summary>
         [JsonProperty("offset")]
         public int Offset { get; set; }

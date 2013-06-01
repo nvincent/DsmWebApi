@@ -17,7 +17,7 @@
         private IEnumerable<DsmService> services = null;
 
         /// <summary>
-        /// Gets or sets the offset of the <see cref="Services"/> collection in the collection of all services.
+        /// Gets or sets the offset of the retrieved services collection.
         /// </summary>
         [JsonProperty("offset")]
         public int Offset { get; set; }
