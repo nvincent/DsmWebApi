@@ -1,5 +1,6 @@
 ﻿namespace DsmWebApi.Core.Tests
 {
+    using System.Configuration;
     using Microsoft.Practices.ServiceLocation;
     using Microsoft.Practices.Unity;
     using Microsoft.Practices.Unity.Configuration;
@@ -43,6 +44,10 @@
         {
             this.DsmApiContext = ServiceLocator.Current.GetInstance<IDsmApiContext>();
             this.DsmApiContext.LoadAllApiInfo().Wait();
+            AuthenticationApi authenticationApi = new AuthenticationApi(this.DsmApiContext);
+            string account = ConfigurationManager.AppSettings["dsm_account"];
+            string password = ConfigurationManager.AppSettings["dsm_password"];
+            authenticationApi.LogOn(account, password).Wait();
         }
 
         /// <summary>
