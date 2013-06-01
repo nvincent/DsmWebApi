@@ -29,5 +29,17 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 packages/*
 !packages/repositories.config
-!.nuget/NuGet.exe
 *.snk
+
+#Include the targets file of the Microsoft.Bcl.Build
+#  because it cannot be restored by the current NuGet mechanism
+#Include the package's folder ...
+!packages/Microsoft.Bcl.Build.1.0.6
+#... but exclude its content
+packages/Microsoft.Bcl.Build.1.0.6/*
+#Include the tools folder of the package ...
+!packages/Microsoft.Bcl.Build.1.0.6/tools
+#... but exclude its content
+packages/Microsoft.Bcl.Build.1.0.6/tools/*
+#Include the targets file
+!packages/Microsoft.Bcl.Build.1.0.6/tools/Microsoft.Bcl.Build.targets
