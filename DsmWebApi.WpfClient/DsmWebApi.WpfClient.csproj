@@ -135,6 +135,7 @@
     <Compile Include="Dsm\Views\DsmUserView.xaml.cs">
       <DependentUpon>DsmUserView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EmptyStringToNullConverter.cs" />
     <Compile Include="ViewModel\ApiViewModelBase.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="Core\Views\AuthenticationView.xaml">
