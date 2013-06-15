@@ -1,7 +1,6 @@
 ﻿namespace DsmWebApi.Core
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -12,7 +11,7 @@
         /// <summary>
         /// Gets information about all available APIs.
         /// </summary>
-        IEnumerable<DsmApiInfo> AllApiInfo { get; }
+        IDictionary<string, DsmApiInfo> AllApiInfo { get; }
 
         /// <summary>
         /// Loads information about all available APIs.

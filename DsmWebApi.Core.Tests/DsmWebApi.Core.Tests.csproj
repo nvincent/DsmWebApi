@@ -81,7 +81,6 @@
   <ItemGroup>
     <Compile Include="AuthenticationApiUnitTest.cs" />
     <Compile Include="EncryptionApiUnitTest.cs" />
-    <Compile Include="DsmApiInfoUnitTest.cs" />
     <Compile Include="DsmApiBaseUnitTest.cs" />
     <Compile Include="InformationApiUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

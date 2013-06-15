@@ -30,7 +30,7 @@
         /// <summary>
         /// Gets the information about all available APIs.
         /// </summary>
-        public IEnumerable<DsmApiInfo> AllApiInfo { get; private set; }
+        public IDictionary<string, DsmApiInfo> AllApiInfo { get; private set; }
 
         /// <summary>
         /// Gets or sets the information API.

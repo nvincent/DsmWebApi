@@ -18,7 +18,7 @@
         /// <summary>
         /// Storage field for the <see cref="AllApiInfo"/> property.
         /// </summary>
-        private IEnumerable<DsmApiInfo> allApiInfo;
+        private IDictionary<string, DsmApiInfo> allApiInfo;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DsmWebApiContext"/> class.
@@ -36,7 +36,7 @@
         }
 
         /// <inheritdoc />
-        public IEnumerable<DsmApiInfo> AllApiInfo
+        public IDictionary<string, DsmApiInfo> AllApiInfo
         {
             get { return this.allApiInfo; }
         }
@@ -82,7 +82,7 @@
 
                 if (response.Success)
                 {
-                    this.allApiInfo = response.Data.Children().OfType<JProperty>().Select(p => DsmApiInfo.ConvertFrom(p));
+                    this.allApiInfo = JsonConvert.DeserializeObject<Dictionary<string, DsmApiInfo>>(response.Data.ToString());
                 }
             }
         }

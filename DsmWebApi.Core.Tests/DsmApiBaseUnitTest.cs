@@ -72,7 +72,6 @@
 
             var apiInfo = dsmApi.ApiInfo;
             Assert.IsNotNull(apiInfo);
-            Assert.IsFalse(string.IsNullOrEmpty(apiInfo.Name));
             Assert.IsFalse(string.IsNullOrEmpty(apiInfo.Path));
             Assert.IsTrue(apiInfo.MinVersion <= apiInfo.MaxVersion);
         }

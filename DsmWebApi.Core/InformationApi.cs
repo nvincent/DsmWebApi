@@ -1,9 +1,8 @@
 ﻿namespace DsmWebApi.Core
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
-    using Newtonsoft.Json.Linq;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// The core information API.
@@ -28,7 +27,7 @@
         /// Gets the information about all available APIs.
         /// </summary>
         /// <returns>The information about all available APIs.</returns>
-        public async Task<IEnumerable<DsmApiInfo>> QueryAll()
+        public async Task<IDictionary<string, DsmApiInfo>> QueryAll()
         {
             DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
@@ -40,10 +39,7 @@
                     { "query", "all" }
                 });
 
-            var allApiInfo = response.Data
-                                     .Children()
-                                     .OfType<JProperty>()
-                                     .Select(p => DsmApiInfo.ConvertFrom(p));
+            var allApiInfo = JsonConvert.DeserializeObject<Dictionary<string, DsmApiInfo>>(response.Data.ToString());
             return allApiInfo;
         }
     }

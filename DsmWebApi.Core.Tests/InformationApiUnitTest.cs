@@ -61,7 +61,7 @@
             var informationApi = this.InformationApi;
             Assert.IsNotNull(informationApi);
 
-            IEnumerable<DsmApiInfo> apiInfo = informationApi.QueryAll().Result;
+            IDictionary<string, DsmApiInfo> apiInfo = informationApi.QueryAll().Result;
             Assert.IsNotNull(apiInfo);
             Assert.IsTrue(apiInfo.Any());
         }

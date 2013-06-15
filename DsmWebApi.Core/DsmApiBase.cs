@@ -2,7 +2,6 @@
 {
     using System;
     using System.Globalization;
-    using System.Linq;
     using DsmWebApi.Core.Properties;
 
     /// <summary>
@@ -24,8 +23,8 @@
             }
 
             this.ApiContext = dsmApiContext;
-            this.ApiInfo = this.ApiContext.AllApiInfo.SingleOrDefault(ai => ai.Name == api);
-            if (this.ApiInfo == null)
+            DsmApiInfo apiInfo;
+            if (!this.ApiContext.AllApiInfo.TryGetValue(api, out apiInfo))
             {
                 string message = string.Format(
                     CultureInfo.CurrentCulture,
@@ -34,6 +33,7 @@
                 throw new NotSupportedException(message);
             }
 
+            this.ApiInfo = apiInfo;
             if (supportedApiVersion < this.ApiInfo.MinVersion || supportedApiVersion > this.ApiInfo.MaxVersion)
             {
                 string message = string.Format(
