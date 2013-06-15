@@ -28,19 +28,28 @@
         /// <summary>
         /// Gets a list of users on the DSM system.
         /// </summary>
-        /// <param name="offset">The offset of the users collection to query.</param>
+        /// <param name="offset">The offset of the users to retrieve in the list of users.</param>
+        /// <param name="limit">The number of users to retrieve in the list of users.</param>
         /// <returns>A list of users on the DSM system.</returns>
-        public async Task<DsmUserCollection> List(int offset)
+        public async Task<DsmUserCollection> List(int? offset, int? limit)
         {
+            IDictionary<string, string> parameters = new Dictionary<string, string>();
+            if (offset.HasValue)
+            {
+                parameters.Add("offset", offset.Value.ToString(CultureInfo.InvariantCulture));
+            }
+
+            if (limit.HasValue)
+            {
+                parameters.Add("limit", limit.Value.ToString(CultureInfo.InvariantCulture));
+            }
+
             DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
                 DsmUserApiName,
                 this.ApiInfo.MaxVersion,
                 "list",
-                new Dictionary<string, string>()
-                {
-                    { "offset", offset.ToString(CultureInfo.InvariantCulture) }
-                });
+                parameters);
             var dsmUserCollection = JsonConvert.DeserializeObject<DsmUserCollection>(response.Data.ToString());
             return dsmUserCollection;
         }

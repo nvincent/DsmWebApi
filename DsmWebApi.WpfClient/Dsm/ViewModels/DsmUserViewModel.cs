@@ -28,9 +28,14 @@
         public ICommand ListCommand { get; private set; }
 
         /// <summary>
-        /// Gets or sets the offset of the users collection to query.
+        /// Gets or sets the offset of the users to retrieve in the list of users.
         /// </summary>
-        public int Offset { get; set; }
+        public int? Offset { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of users to retrieve in the list of users.
+        /// </summary>
+        public int? Limit { get; set; }
 
         /// <summary>
         /// Gets the list of users on the DSM system.
@@ -48,7 +53,7 @@
         /// <returns>The task to await.</returns>
         private async Task List()
         {
-            this.DsmUserCollection = await this.DsmUserApi.List(this.Offset);
+            this.DsmUserCollection = await this.DsmUserApi.List(this.Offset, this.Limit);
             this.RaisePropertyChanged(() => this.DsmUserCollection);
         }
     }

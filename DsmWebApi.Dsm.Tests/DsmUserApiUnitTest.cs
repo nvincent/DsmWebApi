@@ -62,15 +62,33 @@
         {
             var dsmUserApi = this.DsmUserApi;
             Assert.IsNotNull(dsmUserApi);
+            DsmUserCollection users;
 
-            DsmUserCollection users = dsmUserApi.List(0).Result;
+            users = dsmUserApi.List(null, null).Result;
             Assert.IsNotNull(users);
             Assert.IsTrue(users.Any());
-            int usersCount = users.Count();
+            Assert.AreEqual(users.Total, users.Count());
+            DsmUser firstUser = users.First();
 
-            users = dsmUserApi.List(1).Result;
+            users = dsmUserApi.List(null, 1).Result;
             Assert.IsNotNull(users);
-            Assert.IsTrue(users.Count() == (usersCount - 1));
+            Assert.IsTrue(users.Count() <= 1);
+
+            users = dsmUserApi.List(1, null).Result;
+            Assert.IsNotNull(users);
+            Assert.AreEqual(users.Total - 1, users.Count());
+            if (users.Any())
+            {
+                Assert.AreNotEqual(firstUser.Name, users.First().Name);
+            }
+
+            users = dsmUserApi.List(1, 1).Result;
+            Assert.IsNotNull(users);
+            Assert.IsTrue(users.Count() <= 1);
+            if (users.Any())
+            {
+                Assert.AreNotEqual(firstUser.Name, users.First().Name);
+            }
         }
     }
 }
