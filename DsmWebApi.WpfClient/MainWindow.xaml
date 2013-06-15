@@ -238,7 +238,7 @@
                         <TextBlock
                             Text=" - " />
                         <TextBlock
-                            Text="{Binding ErrorCode}" />
+                            Text="{Binding Error.Code}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

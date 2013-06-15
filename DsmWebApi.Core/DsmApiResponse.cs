@@ -16,11 +16,11 @@
         public JToken Data { get; private set; }
 
         /// <summary>
-        /// Gets the error code of the response when <see cref="Success"/> is false.
+        /// Gets the error of the response when <see cref="Success"/> is false.
         /// </summary>
         /// <value>Always null when <see cref="Success"/> is true.</value>
-        [JsonProperty("errorCode")]
-        public int? ErrorCode { get; private set; }
+        [JsonProperty("error")]
+        public DsmApiResponseError Error { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether the request was executed successfully.

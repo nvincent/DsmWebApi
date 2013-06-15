@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="AuthenticationApi.cs" />
     <Compile Include="AuthenticationInformation.cs" />
+    <Compile Include="DsmApiResponseError.cs" />
     <Compile Include="EncryptionInformation.cs" />
     <Compile Include="EncryptionApi.cs" />
     <Compile Include="DsmApiBase.cs" />
