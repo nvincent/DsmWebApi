@@ -117,6 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ApiDoesNotExistMessage" xml:space="preserve">
+    <value>API does not exist</value>
+  </data>
+  <data name="ApiVersionNotSupported" xml:space="preserve">
+    <value>API version is not supported</value>
+  </data>
+  <data name="ConnectionTimeOutMessage" xml:space="preserve">
+    <value>Connection time out</value>
+  </data>
+  <data name="InsufficientUserPrivilegeMessage" xml:space="preserve">
+    <value>Insufficient user privilege</value>
+  </data>
+  <data name="InvalidParametersMessage" xml:space="preserve">
+    <value>Invalid parameters</value>
+  </data>
+  <data name="MethodDoesNotExist" xml:space="preserve">
+    <value>Method does not exist</value>
+  </data>
+  <data name="MultipleLoginDetected" xml:space="preserve">
+    <value>Multiple login detected</value>
+  </data>
+  <data name="UnknownErrorCodeMessage" xml:space="preserve">
+    <value>Unknown error code</value>
+  </data>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>Unknown error</value>
+  </data>
   <data name="UnsupportedApiMessage" xml:space="preserve">
     <value>The "{0}" API is not supported by your DSM system.</value>
     <comment>{0} is the name of the unsupported API</comment>

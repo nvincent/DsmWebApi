@@ -61,6 +61,87 @@ namespace DsmWebApi.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to API does not exist.
+        /// </summary>
+        internal static string ApiDoesNotExistMessage {
+            get {
+                return ResourceManager.GetString("ApiDoesNotExistMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to API version is not supported.
+        /// </summary>
+        internal static string ApiVersionNotSupported {
+            get {
+                return ResourceManager.GetString("ApiVersionNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connection time out.
+        /// </summary>
+        internal static string ConnectionTimeOutMessage {
+            get {
+                return ResourceManager.GetString("ConnectionTimeOutMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insufficient user privilege.
+        /// </summary>
+        internal static string InsufficientUserPrivilegeMessage {
+            get {
+                return ResourceManager.GetString("InsufficientUserPrivilegeMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid parameters.
+        /// </summary>
+        internal static string InvalidParametersMessage {
+            get {
+                return ResourceManager.GetString("InvalidParametersMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Method does not exist.
+        /// </summary>
+        internal static string MethodDoesNotExist {
+            get {
+                return ResourceManager.GetString("MethodDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple login detected.
+        /// </summary>
+        internal static string MultipleLoginDetected {
+            get {
+                return ResourceManager.GetString("MultipleLoginDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown error code.
+        /// </summary>
+        internal static string UnknownErrorCodeMessage {
+            get {
+                return ResourceManager.GetString("UnknownErrorCodeMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown error.
+        /// </summary>
+        internal static string UnknownErrorMessage {
+            get {
+                return ResourceManager.GetString("UnknownErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The &quot;{0}&quot; API is not supported by your DSM system..
         /// </summary>
         internal static string UnsupportedApiMessage {
