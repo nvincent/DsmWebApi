@@ -7,6 +7,7 @@
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
+    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
     /// <summary>
@@ -54,13 +55,13 @@
         public async Task<DsmApiResponse> Request(string apiPath, string api, int version, string method, IDictionary<string, string> additionalParameters)
         {
             Uri requestUri = this.BuildRequestUri(apiPath, api, version, method, additionalParameters);
-            JObject responseObject;
+            string responseString;
             using (WebResponse response = await this.ExecuteRequest(requestUri))
             {
-                responseObject = GetJsonObjectFromWebResponse(response);
+                responseString = GetJsonStringFromWebResponse(response);
             }
 
-            DsmApiResponse apiResponse = ConvertResponseObjectToApiResponse(responseObject);
+            DsmApiResponse apiResponse = JsonConvert.DeserializeObject<DsmApiResponse>(responseString);
             return apiResponse;
         }
 
@@ -87,13 +88,13 @@
         }
 
         /// <summary>
-        /// Gets the <see cref="JObject"/> contained in the response to an API query.
+        /// Gets the JSON string contained in the response to an API query.
         /// </summary>
         /// <param name="response">The response to the query.</param>
-        /// <returns>The JSON representation of the body of the response.</returns>
-        private static JObject GetJsonObjectFromWebResponse(WebResponse response)
+        /// <returns>The JSON string representation of the body of the response.</returns>
+        private static string GetJsonStringFromWebResponse(WebResponse response)
         {
-            JObject responseObject;
+            string responseString;
             Stream responseStream = null;
             try
             {
@@ -101,8 +102,7 @@
                 using (StreamReader responseReader = new StreamReader(responseStream))
                 {
                     responseStream = null;
-                    string responseText = responseReader.ReadToEnd();
-                    responseObject = JObject.Parse(responseText);
+                    responseString = responseReader.ReadToEnd();
                 }
             }
             finally
@@ -113,32 +113,7 @@
                 }
             }
 
-            return responseObject;
-        }
-
-        /// <summary>
-        /// Converts the JSON response wrapper to a <see cref="DsmApiResponse"/> object.
-        /// </summary>
-        /// <param name="responseObject">The JSON wrapper of the response.</param>
-        /// <returns>The <see cref="DsmApiResponse"/> object containing the data in the response wrapper.</returns>
-        private static DsmApiResponse ConvertResponseObjectToApiResponse(JObject responseObject)
-        {
-            DsmApiResponse apiResponse;
-            bool success = responseObject.Property("success").Value.Value<bool>();
-            if (success)
-            {
-                JProperty dataProperty = responseObject.Property("data");
-                JToken data = dataProperty == null ? null : dataProperty.Value;
-                apiResponse = new DsmApiResponse(data);
-            }
-            else
-            {
-                JObject error = responseObject.Property("error").Value.Value<JObject>();
-                int errorCode = error.Property("code").Value.Value<int>();
-                apiResponse = new DsmApiResponse(errorCode);
-            }
-
-            return apiResponse;
+            return responseString;
         }
 
         /// <summary>
