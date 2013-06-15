@@ -43,6 +43,7 @@
         <TabControl
             Grid.Row="1"
             Grid.ColumnSpan="3"
+            Visibility="{Binding IsApiContextLoaded, Converter={StaticResource BooleanToVisibilityConverter}}"
             TabStripPlacement="Left">
             <TabItem
                 Header="API">

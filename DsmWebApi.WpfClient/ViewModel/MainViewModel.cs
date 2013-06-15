@@ -70,6 +70,11 @@ namespace DsmWebApi.WpfClient.ViewModel
         /// </summary>
         public ObservableCollection<DsmApiResponse> LastApiResponses { get; private set; }
 
+        /// <summary>
+        /// Gets a value indicating whether the API context is loaded.
+        /// </summary>
+        public bool IsApiContextLoaded { get; private set; }
+
         #region Core APIs ViewModels
 
         /// <summary>
@@ -121,9 +126,10 @@ namespace DsmWebApi.WpfClient.ViewModel
         /// <summary>
         /// Loads the API context.
         /// </summary>
-        private void LoadApiContext()
+        private async void LoadApiContext()
         {
             this.ApiContext = new DsmWebApiContext(new Uri(this.WebApiBaseUri));
+            await this.ApiContext.LoadAllApiInfo();
 
             this.AuthenticationViewModel = new AuthenticationViewModel(this.ApiContext);
             this.RaisePropertyChanged(() => this.AuthenticationViewModel);
@@ -140,6 +146,9 @@ namespace DsmWebApi.WpfClient.ViewModel
             this.RaisePropertyChanged(() => this.DsmSystemViewModel);
             this.DsmUserViewModel = new DsmUserViewModel(this.ApiContext);
             this.RaisePropertyChanged(() => this.DsmUserViewModel);
+
+            this.IsApiContextLoaded = true;
+            this.RaisePropertyChanged(() => this.IsApiContextLoaded);
         }
 
         /// <summary>

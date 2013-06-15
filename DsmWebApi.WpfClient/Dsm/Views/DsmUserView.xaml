@@ -40,6 +40,6 @@
         <DataGrid
             Grid.Row="2"
             Grid.ColumnSpan="2"
-            ItemsSource="{Binding DsmUserCollection.Users}" />
+            ItemsSource="{Binding DsmUserCollection}" />
     </Grid>
 </UserControl>
