@@ -59,9 +59,21 @@
             var authenticationApi = this.AuthenticationApi;
             Assert.IsNotNull(authenticationApi);
 
-            DsmApiResponse response = authenticationApi.LogOn("admin", "admin").Result;
-            Assert.IsNotNull(response);
-            Assert.IsTrue(response.Success);
+            AuthenticationInformation authenticationInformation = authenticationApi.LogOn("admin", "admin").Result;
+            Assert.IsNotNull(authenticationInformation);
+            Assert.IsNotNull(authenticationInformation.SID);
+        }
+
+        /// <summary>
+        /// Tests the <see cref="M:AuthenticationApi.LogOff"/> method.
+        /// </summary>
+        [TestMethod]
+        public void TestLogOff()
+        {
+            var authenticationApi = this.AuthenticationApi;
+            Assert.IsNotNull(authenticationApi);
+
+            authenticationApi.LogOff().Wait();
         }
     }
 }

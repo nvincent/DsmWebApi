@@ -94,8 +94,8 @@
         /// <returns>The task to await.</returns>
         private async Task LogOn()
         {
-            var logOnResponse = await this.AuthenticationApi.LogOn(this.Account, this.Password);
-            GenericMessage<DsmApiResponse> message = new GenericMessage<DsmApiResponse>(logOnResponse);
+            var authenticationInformation = await this.AuthenticationApi.LogOn(this.Account, this.Password);
+            NotificationMessage message = new NotificationMessage("Logged On as " + this.Account + " with SID = " + authenticationInformation.SID);
             Messenger.Default.Send(message);
         }
 
@@ -105,8 +105,8 @@
         /// <returns>The task to await.</returns>
         private async Task LogOff()
         {
-            var logOffResponse = await this.AuthenticationApi.LogOff();
-            GenericMessage<DsmApiResponse> message = new GenericMessage<DsmApiResponse>(logOffResponse);
+            await this.AuthenticationApi.LogOff();
+            NotificationMessage message = new NotificationMessage("Logged Off");
             Messenger.Default.Send(message);
         }
     }

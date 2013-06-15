@@ -26,6 +26,7 @@ namespace DsmWebApi.WpfClient.ViewModel
         public MainViewModel()
         {
             Messenger.Default.Register<GenericMessage<DsmApiResponse>>(this, this.ProcessApiResponse);
+            Messenger.Default.Register<NotificationMessage>(this, this.ProcessNotification);
 
             this.LoadApiContextCommand = new AsyncRelayCommand(() => Task.Run(() => this.LoadApiContext()));
             this.LastApiResponses = new ObservableCollection<DsmApiResponse>();
@@ -159,6 +160,14 @@ namespace DsmWebApi.WpfClient.ViewModel
         {
             var apiResponse = apiResponseMessage.Content;
             this.LastApiResponses.Add(apiResponse);
+        }
+
+        /// <summary>
+        /// Processes a notification message.
+        /// </summary>
+        /// <param name="notificationMessage">The notification message to process.</param>
+        private void ProcessNotification(NotificationMessage notificationMessage)
+        {
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// The DSM authentication API.
@@ -27,8 +28,8 @@
         /// </summary>
         /// <param name="account">The name of the account.</param>
         /// <param name="password">The password of the account.</param>
-        /// <returns>The response of the log on request.</returns>
-        public async Task<DsmApiResponse> LogOn(string account, string password)
+        /// <returns>The information about the authenticated connection.</returns>
+        public async Task<AuthenticationInformation> LogOn(string account, string password)
         {
             DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
@@ -40,14 +41,15 @@
                     { "account", account },
                     { "passwd", password }
                 });
-            return response;
+            var authenticationInformation = JsonConvert.DeserializeObject<AuthenticationInformation>(response.Data.ToString());
+            return authenticationInformation;
         }
 
         /// <summary>
         /// Logs off the DSM system.
         /// </summary>
         /// <returns>The response of the log off request.</returns>
-        public async Task<DsmApiResponse> LogOff()
+        public async Task LogOff()
         {
             DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
@@ -55,7 +57,6 @@
                 this.ApiInfo.MaxVersion,
                 "logout",
                 null);
-            return response;
         }
     }
 }
