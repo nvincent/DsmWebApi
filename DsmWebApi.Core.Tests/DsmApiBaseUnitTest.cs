@@ -1,6 +1,9 @@
 ﻿namespace DsmWebApi.Core.Tests
 {
+    using System;
+    using System.Collections.Generic;
     using System.Configuration;
+    using System.Linq;
     using Microsoft.Practices.ServiceLocation;
     using Microsoft.Practices.Unity;
     using Microsoft.Practices.Unity.Configuration;
@@ -74,6 +77,47 @@
             Assert.IsNotNull(apiInfo);
             Assert.IsFalse(string.IsNullOrEmpty(apiInfo.Path));
             Assert.IsTrue(apiInfo.MinVersion <= apiInfo.MaxVersion);
+        }
+
+        /// <summary>
+        /// Tests a list operation that takes an offset and a limit parameter.
+        /// </summary>
+        /// <typeparam name="T">The type of the listed objects.</typeparam>
+        /// <param name="list">The function that takes an offset and a limit parameters and returns a collection of objects.</param>
+        /// <param name="getTotal">The function that takes a collection of objects returned by <paramref name="list"/> and returns the total number of objects of type <typeparamref name="T"/>.</param>
+        /// <param name="equalityComparer">A function that compares two objects of type <typeparamref name="T"/> and returns true if they are equal, false otherwise.</param>
+        protected void TestList<T>(
+            Func<int?, int?, IEnumerable<T>> list,
+            Func<IEnumerable<T>, int> getTotal,
+            Func<T, T, bool> equalityComparer)
+        {
+            IEnumerable<T> items;
+
+            items = list(null, null);
+            Assert.IsNotNull(items);
+            Assert.IsTrue(items.Any());
+            Assert.AreEqual(getTotal(items), items.Count());
+            T firstItem = items.First();
+
+            items = list(null, 1);
+            Assert.IsNotNull(items);
+            Assert.IsTrue(items.Count() <= 1);
+
+            items = list(1, null);
+            Assert.IsNotNull(items);
+            Assert.AreEqual(getTotal(items) - 1, items.Count());
+            if (items.Any())
+            {
+                Assert.IsFalse(equalityComparer(firstItem, items.First()));
+            }
+
+            items = list(1, 1);
+            Assert.IsNotNull(items);
+            Assert.IsTrue(items.Count() <= 1);
+            if (items.Any())
+            {
+                Assert.IsFalse(equalityComparer(firstItem, items.First()));
+            }
         }
     }
 }
