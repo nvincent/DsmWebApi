@@ -9,21 +9,19 @@
     public class DsmApiResponse
     {
         /// <summary>
-        /// Gets the data of the response when <see cref="Success"/> is true.
+        /// Gets or sets the data of the response when <see cref="Success"/> is true.
         /// </summary>
-        /// <value>Always null when <see cref="Success"/> is false.</value>
         [JsonProperty("data")]
         public JToken Data { get; set; }
 
         /// <summary>
-        /// Gets the error of the response when <see cref="Success"/> is false.
+        /// Gets or sets the error of the response when <see cref="Success"/> is false.
         /// </summary>
-        /// <value>Always null when <see cref="Success"/> is true.</value>
         [JsonProperty("error")]
         public DsmApiResponseError Error { get; set; }
 
         /// <summary>
-        /// Gets a value indicating whether the request was executed successfully.
+        /// Gets or sets a value indicating whether the request was executed successfully.
         /// </summary>
         [JsonProperty("success")]
         public bool Success { get; set; }

@@ -51,6 +51,7 @@
                 "list",
                 parameters);
             var dsmApplicationCollection = JsonConvert.DeserializeObject<DsmApplicationCollection>(response.Data.ToString());
+
             // The DSM application API seems to reports a total count that is one over the real total count of applications.
             dsmApplicationCollection.Total -= 1;
             return dsmApplicationCollection;

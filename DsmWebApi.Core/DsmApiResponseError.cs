@@ -8,7 +8,7 @@
     public class DsmApiResponseError
     {
         /// <summary>
-        /// Gets the error code.
+        /// Gets or sets the error code.
         /// </summary>
         [JsonProperty("code")]
         public int Code { get; set; }

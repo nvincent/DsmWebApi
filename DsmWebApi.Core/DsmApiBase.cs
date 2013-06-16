@@ -56,6 +56,10 @@
         /// </summary>
         protected IDsmApiContext ApiContext { get; private set; }
 
+        /// <summary>
+        /// Throws a <see cref="DsmApiException"/> with the correct error code and message when the response contains an error.
+        /// </summary>
+        /// <param name="apiResponse">The response to check.</param>
         protected void ThrowIfError(DsmApiResponse apiResponse)
         {
             if (!apiResponse.Success)
