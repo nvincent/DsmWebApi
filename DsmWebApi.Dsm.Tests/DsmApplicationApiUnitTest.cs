@@ -63,14 +63,10 @@
             var dsmApplicationApi = this.DsmApplicationApi;
             Assert.IsNotNull(dsmApplicationApi);
 
-            DsmApplicationCollection applications = dsmApplicationApi.List(0).Result;
-            Assert.IsNotNull(applications);
-            Assert.IsTrue(applications.Any());
-            int applicationsCount = applications.Count();
-
-            applications = dsmApplicationApi.List(1).Result;
-            Assert.IsNotNull(applications);
-            Assert.IsTrue(applications.Count() == (applicationsCount - 1));
+            this.TestList(
+                (offset, limit) => dsmApplicationApi.List(offset, limit).Result,
+                applications => ((DsmApplicationCollection)applications).Total,
+                (application1, application2) => application1.Name == application2.Name);
         }
     }
 }

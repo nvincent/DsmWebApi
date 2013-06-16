@@ -28,20 +28,31 @@
         /// <summary>
         /// Gets a list of applications on the DSM system.
         /// </summary>
-        /// <param name="offset">The offset of the applications collection to query.</param>
+        /// <param name="offset">The offset of the applications to retrieve in the list of applications.</param>
+        /// <param name="limit">The number of applications to retrieve in the list of applications.</param>
         /// <returns>A list of applications on the DSM system.</returns>
-        public async Task<DsmApplicationCollection> List(int offset)
+        public async Task<DsmApplicationCollection> List(int? offset, int? limit)
         {
+            IDictionary<string, string> parameters = new Dictionary<string, string>();
+            if (offset.HasValue)
+            {
+                parameters.Add("offset", offset.Value.ToString(CultureInfo.InvariantCulture));
+            }
+
+            if (limit.HasValue)
+            {
+                parameters.Add("limit", limit.Value.ToString(CultureInfo.InvariantCulture));
+            }
+
             DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
                 DsmApplicationApiName,
                 this.ApiInfo.MaxVersion,
                 "list",
-                new Dictionary<string, string>()
-                {
-                    { "offset", offset.ToString(CultureInfo.InvariantCulture) }
-                });
+                parameters);
             var dsmApplicationCollection = JsonConvert.DeserializeObject<DsmApplicationCollection>(response.Data.ToString());
+            // The DSM application API seems to reports a total count that is one over the real total count of applications.
+            dsmApplicationCollection.Total -= 1;
             return dsmApplicationCollection;
         }
     }
