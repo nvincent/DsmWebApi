@@ -55,5 +55,43 @@
         /// Gets the context used to access the DSM API.
         /// </summary>
         protected IDsmApiContext ApiContext { get; private set; }
+
+        protected void ThrowIfError(DsmApiResponse apiResponse)
+        {
+            if (!apiResponse.Success)
+            {
+                throw new DsmApiException(apiResponse.Error.Code, this.ConvertErrorCodeToErrorMessage(apiResponse.Error.Code));
+            }
+        }
+
+        /// <summary>
+        /// Converts an error code to a localized message.
+        /// </summary>
+        /// <param name="errorCode">The error code to convert.</param>
+        /// <returns>The localized message.</returns>
+        protected virtual string ConvertErrorCodeToErrorMessage(int errorCode)
+        {
+            switch (errorCode)
+            {
+                case 100:
+                    return Resources.UnknownErrorMessage;
+                case 101:
+                    return Resources.InvalidParametersMessage;
+                case 102:
+                    return Resources.ApiDoesNotExistMessage;
+                case 103:
+                    return Resources.MethodDoesNotExist;
+                case 104:
+                    return Resources.ApiVersionNotSupported;
+                case 105:
+                    return Resources.InsufficientUserPrivilegeMessage;
+                case 106:
+                    return Resources.ConnectionTimeOutMessage;
+                case 107:
+                    return Resources.MultipleLoginDetected;
+                default:
+                    return Resources.UnknownErrorCodeMessage;
+            }
+        }
     }
 }
