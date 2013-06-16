@@ -34,12 +34,12 @@ packages/*
 #Include the targets file of the Microsoft.Bcl.Build
 #  because it cannot be restored by the current NuGet mechanism
 #Include the package's folder ...
-!packages/Microsoft.Bcl.Build.1.0.6
+!packages/Microsoft.Bcl.Build.1.0.7
 #... but exclude its content
-packages/Microsoft.Bcl.Build.1.0.6/*
+packages/Microsoft.Bcl.Build.1.0.7/*
 #Include the tools folder of the package ...
-!packages/Microsoft.Bcl.Build.1.0.6/tools
+!packages/Microsoft.Bcl.Build.1.0.7/tools
 #... but exclude its content
-packages/Microsoft.Bcl.Build.1.0.6/tools/*
+packages/Microsoft.Bcl.Build.1.0.7/tools/*
 #Include the targets file
-!packages/Microsoft.Bcl.Build.1.0.6/tools/Microsoft.Bcl.Build.targets
+!packages/Microsoft.Bcl.Build.1.0.7/tools/Microsoft.Bcl.Build.targets
