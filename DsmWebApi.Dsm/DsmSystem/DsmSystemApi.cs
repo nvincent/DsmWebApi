@@ -26,8 +26,8 @@
         /// <summary>
         /// Reboots the DSM system.
         /// </summary>
-        /// <returns>The response of the reboot request.</returns>
-        public async Task<DsmApiResponse> Reboot()
+        /// <returns>The task containing the reboot operation.</returns>
+        public async Task Reboot()
         {
             DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
@@ -35,14 +35,13 @@
                 this.ApiInfo.MaxVersion,
                 "reboot",
                 null);
-            return response;
         }
 
         /// <summary>
         /// Shutdowns the DSM system.
         /// </summary>
-        /// <returns>The response of the shutdown request.</returns>
-        public async Task<DsmApiResponse> Shutdown()
+        /// <returns>The task containing the shutdown operation.</returns>
+        public async Task Shutdown()
         {
             DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
@@ -50,7 +49,6 @@
                 this.ApiInfo.MaxVersion,
                 "shutdown",
                 null);
-            return response;
         }
 
         /// <summary>

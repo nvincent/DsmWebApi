@@ -57,8 +57,8 @@
         /// <returns>The task to await.</returns>
         private async Task Reboot()
         {
-            var rebootResponse = await this.DsmSystemApi.Reboot();
-            GenericMessage<DsmApiResponse> message = new GenericMessage<DsmApiResponse>(rebootResponse);
+            await this.DsmSystemApi.Reboot();
+            NotificationMessage message = new NotificationMessage("Rebooting ...");
             Messenger.Default.Send(message);
         }
 
@@ -68,8 +68,8 @@
         /// <returns>The task to await.</returns>
         private async Task Shutdown()
         {
-            var shutdownResponse = await this.DsmSystemApi.Shutdown();
-            GenericMessage<DsmApiResponse> message = new GenericMessage<DsmApiResponse>(shutdownResponse);
+            await this.DsmSystemApi.Shutdown();
+            NotificationMessage message = new NotificationMessage("Shutting down ...");
             Messenger.Default.Send(message);
         }
 
