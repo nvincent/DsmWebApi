@@ -61,7 +61,7 @@
 
             AuthenticationInformation authenticationInformation = authenticationApi.LogOn("admin", "admin").Result;
             Assert.IsNotNull(authenticationInformation);
-            Assert.IsNotNull(authenticationInformation.SID);
+            Assert.IsFalse(string.IsNullOrEmpty(authenticationInformation.Sid));
         }
 
         /// <summary>

@@ -64,6 +64,8 @@
             IDictionary<string, DsmApiInfo> apiInfo = informationApi.QueryAll().Result;
             Assert.IsNotNull(apiInfo);
             Assert.IsTrue(apiInfo.Any());
+            Assert.IsTrue(apiInfo.All(ai => !string.IsNullOrEmpty(ai.Value.Path)));
+            Assert.IsTrue(apiInfo.All(ai => ai.Value.MinVersion <= ai.Value.MaxVersion));
         }
     }
 }
