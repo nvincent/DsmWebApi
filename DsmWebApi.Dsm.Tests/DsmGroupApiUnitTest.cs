@@ -63,14 +63,10 @@
             var dsmGroupApi = this.DsmGroupApi;
             Assert.IsNotNull(dsmGroupApi);
 
-            DsmGroupCollection groups = dsmGroupApi.List(0).Result;
-            Assert.IsNotNull(groups);
-            Assert.IsTrue(groups.Any());
-            int groupsCount = groups.Count();
-
-            groups = dsmGroupApi.List(1).Result;
-            Assert.IsNotNull(groups);
-            Assert.IsTrue(groups.Count() == (groupsCount - 1));
+            this.TestList(
+                (offset, limit) => dsmGroupApi.List(offset, limit).Result,
+                groups => ((DsmGroupCollection)groups).Total,
+                (group1, group2) => group1.Name == group2.Name);
         }
     }
 }
