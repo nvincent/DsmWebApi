@@ -3,7 +3,7 @@
     /// <summary>
     /// Names of log types supported on a DSM.
     /// </summary>
-    public class DsmLogTypes
+    public static class DsmLogTypes
     {
         /// <summary>
         /// Name of the log that contains system related entries.

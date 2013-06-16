@@ -62,6 +62,11 @@
         /// <param name="apiResponse">The response to check.</param>
         protected void ThrowIfError(DsmApiResponse apiResponse)
         {
+            if (apiResponse == null)
+            {
+                throw new ArgumentNullException("apiResponse");
+            }
+
             if (!apiResponse.Success)
             {
                 throw new DsmApiException(apiResponse.Error.Code, this.ConvertErrorCodeToErrorMessage(apiResponse.Error.Code));
