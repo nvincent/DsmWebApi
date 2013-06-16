@@ -28,9 +28,14 @@
         public ICommand ListCommand { get; private set; }
 
         /// <summary>
-        /// Gets or sets the offset of the shares collection to query.
+        /// Gets or sets the offset of the shares to retrieve in the list of shares.
         /// </summary>
-        public int Offset { get; set; }
+        public int? Offset { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of shares to retrieve in the list of shares.
+        /// </summary>
+        public int? Limit { get; set; }
 
         /// <summary>
         /// Gets the list of shares on the DSM system.
@@ -48,7 +53,7 @@
         /// <returns>The task to await.</returns>
         private async Task List()
         {
-            this.DsmShareCollection = await this.DsmShareApi.List(this.Offset);
+            this.DsmShareCollection = await this.DsmShareApi.List(this.Offset, this.Limit);
             this.RaisePropertyChanged(() => this.DsmShareCollection);
         }
     }

@@ -63,14 +63,10 @@
             var dsmShareApi = this.DsmShareApi;
             Assert.IsNotNull(dsmShareApi);
 
-            DsmShareCollection shares = dsmShareApi.List(0).Result;
-            Assert.IsNotNull(shares);
-            Assert.IsTrue(shares.Any());
-            int sharesCount = shares.Count();
-
-            shares = dsmShareApi.List(1).Result;
-            Assert.IsNotNull(shares);
-            Assert.IsTrue(shares.Count() == (sharesCount - 1));
+            this.TestList<DsmShare>(
+                (offset, limit) => dsmShareApi.List(offset, limit).Result,
+                shares => ((DsmShareCollection)shares).Total,
+                (share1, share2) => share1.Name == share2.Name);
         }
     }
 }

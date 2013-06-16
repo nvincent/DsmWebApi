@@ -28,19 +28,28 @@
         /// <summary>
         /// Gets a list of shares on the DSM system.
         /// </summary>
-        /// <param name="offset">The offset of the shares collection to query.</param>
+        /// <param name="offset">The offset of the shares to retrieve in the list of shares.</param>
+        /// <param name="limit">The number of shares to retrieve in the list of shares.</param>
         /// <returns>A list of shares on the DSM system.</returns>
-        public async Task<DsmShareCollection> List(int offset)
+        public async Task<DsmShareCollection> List(int? offset, int? limit)
         {
+            IDictionary<string, string> parameters = new Dictionary<string, string>();
+            if (offset.HasValue)
+            {
+                parameters.Add("offset", offset.Value.ToString(CultureInfo.InvariantCulture));
+            }
+
+            if (limit.HasValue)
+            {
+                parameters.Add("limit", limit.Value.ToString(CultureInfo.InvariantCulture));
+            }
+
             DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
                 DsmShareApiName,
                 this.ApiInfo.MaxVersion,
                 "list",
-                new Dictionary<string, string>()
-                {
-                    { "offset", offset.ToString(CultureInfo.InvariantCulture) }
-                });
+                parameters);
             var dsmShareCollection = JsonConvert.DeserializeObject<DsmShareCollection>(response.Data.ToString());
             return dsmShareCollection;
         }
