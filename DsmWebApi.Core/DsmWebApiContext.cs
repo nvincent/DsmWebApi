@@ -7,7 +7,6 @@
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
-    using DsmWebApi.Core.Properties;
     using Newtonsoft.Json;
 
     /// <summary>

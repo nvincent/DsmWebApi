@@ -5,7 +5,6 @@
     using DsmWebApi.Core;
     using DsmWebApi.Core.Tests;
     using DsmWebApi.Dsm.SystemLoading;
-    using DsmWebApi.Dsm.User;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>

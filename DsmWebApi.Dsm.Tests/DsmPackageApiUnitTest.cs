@@ -1,7 +1,6 @@
 ﻿namespace DsmWebApi.Dsm.Tests
 {
     using System;
-    using System.Linq;
     using DsmWebApi.Core;
     using DsmWebApi.Core.Tests;
     using DsmWebApi.Dsm.Package;

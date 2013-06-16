@@ -33,7 +33,7 @@
         /// <returns>A list of users on the DSM system.</returns>
         public async Task<DsmUserCollection> List(int? offset, int? limit)
         {
-            IDictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
             if (offset.HasValue)
             {
                 parameters.Add("offset", offset.Value.ToString(CultureInfo.InvariantCulture));

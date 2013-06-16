@@ -52,7 +52,7 @@
         /// <returns>A list of groups on the DSM system.</returns>
         public async Task<DsmLogEntryCollection> List(string logType, int? offset, int? limit)
         {
-            IDictionary<string, string> parameters = new Dictionary<string, string>()
+            var parameters = new Dictionary<string, string>()
             {
                 { "logtype", logType }
             };

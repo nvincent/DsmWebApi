@@ -48,7 +48,7 @@
         /// <summary>
         /// Logs off the DSM system.
         /// </summary>
-        /// <returns>The response of the log off request.</returns>
+        /// <returns>The task containing the log off operation.</returns>
         public async Task LogOff()
         {
             DsmApiResponse response = await this.ApiContext.Request(
