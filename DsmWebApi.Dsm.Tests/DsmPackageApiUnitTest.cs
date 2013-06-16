@@ -63,14 +63,10 @@
             var dsmPackageApi = this.DsmPackageApi;
             Assert.IsNotNull(dsmPackageApi);
 
-            DsmPackageCollection packages = dsmPackageApi.List(0).Result;
-            Assert.IsNotNull(packages);
-            Assert.IsTrue(packages.Any());
-            int packagesCount = packages.Count();
-
-            packages = dsmPackageApi.List(1).Result;
-            Assert.IsNotNull(packages);
-            Assert.IsTrue(packages.Count() == (packagesCount - 1));
+            this.TestList(
+                (offset, limit) => dsmPackageApi.List(offset, limit).Result,
+                packages => ((DsmPackageCollection)packages).Total,
+                (package1, package2) => package1.Name == package2.Name);
         }
     }
 }
