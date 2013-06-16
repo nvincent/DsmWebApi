@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.Threading.Tasks;
     using DsmWebApi.Core;
     using Newtonsoft.Json;
@@ -40,6 +41,39 @@
                 null);
             var supportedLogs = JsonConvert.DeserializeObject<IEnumerable<string>>(response.Data.ToString());
             return supportedLogs;
+        }
+
+        /// <summary>
+        /// Gets a list of groups on the DSM system.
+        /// </summary>
+        /// <param name="logType">The type of log entries to query. Must be one of the strings returned by <see cref="Supported"/>.</param>
+        /// <param name="offset">The offset of the groups to retrieve in the list of groups.</param>
+        /// <param name="limit">The number of groups to retrieve in the list of groups.</param>
+        /// <returns>A list of groups on the DSM system.</returns>
+        public async Task<DsmLogEntryCollection> List(string logType, int? offset, int? limit)
+        {
+            IDictionary<string, string> parameters = new Dictionary<string, string>()
+            {
+                { "logtype", logType }
+            };
+            if (offset.HasValue)
+            {
+                parameters.Add("offset", offset.Value.ToString(CultureInfo.InvariantCulture));
+            }
+
+            if (limit.HasValue)
+            {
+                parameters.Add("limit", limit.Value.ToString(CultureInfo.InvariantCulture));
+            }
+
+            DsmApiResponse response = await this.ApiContext.Request(
+                this.ApiInfo.Path,
+                DsmLogViewerApiName,
+                this.ApiInfo.MaxVersion,
+                "list",
+                parameters);
+            var dsmLogEntryCollection = JsonConvert.DeserializeObject<DsmLogEntryCollection>(response.Data.ToString());
+            return dsmLogEntryCollection;
         }
     }
 }

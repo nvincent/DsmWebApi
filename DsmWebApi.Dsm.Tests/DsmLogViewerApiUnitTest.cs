@@ -68,5 +68,20 @@
             Assert.IsNotNull(supportedLogs);
             Assert.IsTrue(supportedLogs.Any());
         }
+
+        /// <summary>
+        /// Tests the <see cref="M:DsmLogViewerApi.List(int)"/> method.
+        /// </summary>
+        [TestMethod]
+        public void TestList()
+        {
+            var dsmLogViewerApi = this.DsmLogViewerApi;
+            Assert.IsNotNull(dsmLogViewerApi);
+
+            this.TestList(
+                (offset, limit) => dsmLogViewerApi.List(DsmLogTypes.System, offset, limit).Result,
+                logEntries => ((DsmLogEntryCollection)logEntries).Total,
+                (logEntry1, logEntry2) => logEntry1.Timestamp == logEntry2.Timestamp);
+        }
     }
 }

@@ -69,6 +69,9 @@
     <Compile Include="IScsi\DsmIScsiLun.cs" />
     <Compile Include="IScsi\DsmIScsiMapping.cs" />
     <Compile Include="IScsi\DsmIScsiTarget.cs" />
+    <Compile Include="LogViewer\DsmLogEntry.cs" />
+    <Compile Include="LogViewer\DsmLogEntryCollection.cs" />
+    <Compile Include="LogViewer\DsmLogTypes.cs" />
     <Compile Include="LogViewer\DsmLogViewerApi.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
