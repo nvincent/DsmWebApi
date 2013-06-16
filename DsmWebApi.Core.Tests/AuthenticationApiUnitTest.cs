@@ -1,6 +1,7 @@
 ﻿namespace DsmWebApi.Core.Tests
 {
     using System;
+    using System.Configuration;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
@@ -59,7 +60,9 @@
             var authenticationApi = this.AuthenticationApi;
             Assert.IsNotNull(authenticationApi);
 
-            AuthenticationInformation authenticationInformation = authenticationApi.LogOn("admin", "admin").Result;
+            string account = ConfigurationManager.AppSettings["dsm_account"];
+            string password = ConfigurationManager.AppSettings["dsm_password"];
+            AuthenticationInformation authenticationInformation = authenticationApi.LogOn(account, password).Result;
             Assert.IsNotNull(authenticationInformation);
             Assert.IsFalse(string.IsNullOrEmpty(authenticationInformation.Sid));
         }
