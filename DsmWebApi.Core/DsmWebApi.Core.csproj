@@ -97,6 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DsmWebApi.Core.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -6,8 +6,5 @@
     <authors>$author$</authors>
     <description>$description$</description>
     <projectUrl>https://dsmwebapi.codeplex.com/</projectUrl>
-    <dependencies>
-      <dependency id="DsmWebApi.Core" version="$NuGetPackageVersion$" />
-    </dependencies>
   </metadata>
 </package>
