@@ -57,7 +57,8 @@ function Build-DsmWebApiRelease
         /m `
         /p:OutDir="$OutDir\\" `
         /p:Configuration="$msbuildConfiguration" `
-        /p:Platform="Any CPU"
+        /p:Platform="Any CPU" `
+        /p:NuGetPackageVersion="$Version"
 
     # Revert version in SharedAssemblyInfo.cs
     $sharedAssemblyInfo = Get-Content $sharedAssemblyInfoFile

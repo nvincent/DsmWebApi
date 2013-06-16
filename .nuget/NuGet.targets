@@ -14,6 +14,8 @@
 
     <!-- Download NuGet.exe if it does not already exist -->
     <DownloadNuGetExe Condition=" '$(DownloadNuGetExe)' == '' ">true</DownloadNuGetExe>
+
+    <NuGetPackageVersion Condition=" '$(NuGetPackageVersion)' == '' ">1.0.0.0</NuGetPackageVersion>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(PackageSources)' == '' ">
@@ -52,7 +54,7 @@
 
     <!-- Commands -->
     <RestoreCommand>$(NuGetCommand) install "$(PackagesConfig)" -source "$(PackageSources)"  $(NonInteractiveSwitch) $(RequireConsentSwitch) -solutionDir "$(SolutionDir) " </RestoreCommand>
-    <BuildCommand>$(NuGetCommand) pack "$(ProjectPath)" -Properties Configuration=$(Configuration) $(NonInteractiveSwitch) -OutputDirectory "$(PackageOutputDir)" -symbols</BuildCommand>
+    <BuildCommand>$(NuGetCommand) pack "$(ProjectPath)" -Properties Configuration=$(Configuration) $(NonInteractiveSwitch) -OutputDirectory "$(PackageOutputDir)" -symbols -version "$(NuGetPackageVersion)"</BuildCommand>
 
     <!-- We need to ensure packages are restored prior to assembly resolve -->
     <BuildDependsOn Condition="$(RestorePackages) == 'true'">
