@@ -84,6 +84,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="DsmAutoBlockApiUnitTest.cs" />
     <Compile Include="DsmConnectionApiUnitTest.cs" />
     <Compile Include="DsmSystemApiUnitTest.cs" />

@@ -79,6 +79,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="AuthenticationApiUnitTest.cs" />
     <Compile Include="EncryptionApiUnitTest.cs" />
     <Compile Include="DsmApiBaseUnitTest.cs" />

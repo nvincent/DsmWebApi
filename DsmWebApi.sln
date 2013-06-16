@@ -29,6 +29,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{752CFDE2-4C06-489B-8099-362DB34043A6}"
 	ProjectSection(SolutionItems) = preProject
 		CodeAnalysisDictionary.xml = CodeAnalysisDictionary.xml
+		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsmWebApi.Core.Tests", "DsmWebApi.Core.Tests\DsmWebApi.Core.Tests.csproj", "{B8133B0A-5C22-4B00-903C-3008D125CF34}"

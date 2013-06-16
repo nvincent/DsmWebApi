@@ -106,6 +106,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="AsyncRelayCommand.cs" />
     <Compile Include="Core\ViewModels\AuthenticationViewModel.cs" />
     <Compile Include="Core\ViewModels\EncryptionViewModel.cs" />

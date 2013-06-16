@@ -53,6 +53,9 @@
     </CodeAnalysisDictionary>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Application\DsmApplication.cs" />
     <Compile Include="Application\DsmApplicationApi.cs" />
     <Compile Include="Application\DsmApplicationCollection.cs" />

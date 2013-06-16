@@ -53,6 +53,9 @@
     </CodeAnalysisDictionary>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="AuthenticationApi.cs" />
     <Compile Include="AuthenticationInformation.cs" />
     <Compile Include="DsmApiException.cs" />
