@@ -63,14 +63,10 @@
             var dsmVolumeApi = this.DsmVolumeApi;
             Assert.IsNotNull(dsmVolumeApi);
 
-            DsmVolumeCollection volumes = dsmVolumeApi.List(0).Result;
-            Assert.IsNotNull(volumes);
-            Assert.IsTrue(volumes.Any());
-            int volumesCount = volumes.Count();
-
-            volumes = dsmVolumeApi.List(1).Result;
-            Assert.IsNotNull(volumes);
-            Assert.IsTrue(volumes.Count() == (volumesCount - 1));
+            this.TestList(
+                (offset, limit) => dsmVolumeApi.List(offset, limit).Result,
+                volumes => ((DsmVolumeCollection)volumes).Total,
+                (volume1, volume2) => volume1.Id == volume2.Id);
         }
     }
 }
