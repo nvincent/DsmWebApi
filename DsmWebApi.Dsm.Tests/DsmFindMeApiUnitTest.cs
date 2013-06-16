@@ -65,13 +65,9 @@
             bool supported = dsmFindMeApi.Supported().Result;
             if (supported)
             {
-                DsmApiResponse startResponse = dsmFindMeApi.Start().Result;
-                Assert.IsNotNull(startResponse);
-                Assert.IsTrue(startResponse.Success);
+                dsmFindMeApi.Start().Wait();
 
-                DsmApiResponse stopResponse = dsmFindMeApi.Stop().Result;
-                Assert.IsNotNull(stopResponse);
-                Assert.IsTrue(stopResponse.Success);
+                dsmFindMeApi.Stop().Wait();
             }
         }
     }

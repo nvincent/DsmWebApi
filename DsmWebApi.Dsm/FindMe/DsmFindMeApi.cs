@@ -25,8 +25,8 @@
         /// <summary>
         /// Starts the Find Me beeps.
         /// </summary>
-        /// <returns>The response of the start request.</returns>
-        public async Task<DsmApiResponse> Start()
+        /// <returns>The task containing the Find Me start operation.</returns>
+        public async Task Start()
         {
             DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
@@ -34,14 +34,13 @@
                 this.ApiInfo.MaxVersion,
                 "start",
                 null);
-            return response;
         }
 
         /// <summary>
         /// Stops the Find Me beeps.
         /// </summary>
-        /// <returns>The response of the stop request.</returns>
-        public async Task<DsmApiResponse> Stop()
+        /// <returns>The task containing the Find Me stop operation.</returns>
+        public async Task Stop()
         {
             DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
@@ -49,7 +48,6 @@
                 this.ApiInfo.MaxVersion,
                 "stop",
                 null);
-            return response;
         }
 
         /// <summary>
