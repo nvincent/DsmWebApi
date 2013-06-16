@@ -63,14 +63,10 @@
             var dsmServiceApi = this.DsmServiceApi;
             Assert.IsNotNull(dsmServiceApi);
 
-            DsmServiceCollection services = dsmServiceApi.List(0).Result;
-            Assert.IsNotNull(services);
-            Assert.IsTrue(services.Any());
-            int servicesCount = services.Count();
-
-            services = dsmServiceApi.List(1).Result;
-            Assert.IsNotNull(services);
-            Assert.IsTrue(services.Count() == (servicesCount - 1));
+            this.TestList(
+                (offset, limit) => dsmServiceApi.List(offset, limit).Result,
+                services => ((DsmServiceCollection)services).Total,
+                (service1, service2) => service1.Name == service2.Name);
         }
     }
 }

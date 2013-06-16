@@ -28,19 +28,28 @@
         /// <summary>
         /// Gets a list of services on the DSM system.
         /// </summary>
-        /// <param name="offset">The offset of the services collection to query.</param>
+        /// <param name="offset">The offset of the services to retrieve in the list of services.</param>
+        /// <param name="limit">The number of services to retrieve in the list of services.</param>
         /// <returns>A list of services on the DSM system.</returns>
-        public async Task<DsmServiceCollection> List(int offset)
+        public async Task<DsmServiceCollection> List(int? offset, int? limit)
         {
+            IDictionary<string, string> parameters = new Dictionary<string, string>();
+            if (offset.HasValue)
+            {
+                parameters.Add("offset", offset.Value.ToString(CultureInfo.InvariantCulture));
+            }
+
+            if (limit.HasValue)
+            {
+                parameters.Add("limit", limit.Value.ToString(CultureInfo.InvariantCulture));
+            }
+
             DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
                 DsmServiceApiName,
                 this.ApiInfo.MaxVersion,
                 "list",
-                new Dictionary<string, string>()
-                {
-                    { "offset", offset.ToString(CultureInfo.InvariantCulture) }
-                });
+                parameters);
             var dsmServiceCollection = JsonConvert.DeserializeObject<DsmServiceCollection>(response.Data.ToString());
             return dsmServiceCollection;
         }
