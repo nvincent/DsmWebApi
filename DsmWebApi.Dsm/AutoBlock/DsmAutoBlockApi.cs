@@ -29,19 +29,28 @@
         /// <summary>
         /// Gets a list of blocked addresses on the DSM system.
         /// </summary>
-        /// <param name="offset">The offset of the blocked addresses collection to query.</param>
+        /// <param name="offset">The offset of the groups to retrieve in the list of groups.</param>
+        /// <param name="limit">The number of groups to retrieve in the list of groups.</param>
         /// <returns>A list of blocked addresses on the DSM system.</returns>
-        public async Task<DsmBlockedAddressCollection> List(int offset)
+        public async Task<DsmBlockedAddressCollection> List(int? offset, int? limit)
         {
+            IDictionary<string, string> parameters = new Dictionary<string, string>();
+            if (offset.HasValue)
+            {
+                parameters.Add("offset", offset.Value.ToString(CultureInfo.InvariantCulture));
+            }
+
+            if (limit.HasValue)
+            {
+                parameters.Add("limit", limit.Value.ToString(CultureInfo.InvariantCulture));
+            }
+
             DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
                 DsmAutoBlockApiName,
                 this.ApiInfo.MaxVersion,
                 "list",
-                new Dictionary<string, string>()
-                {
-                    { "offset", offset.ToString(CultureInfo.InvariantCulture) }
-                });
+                parameters);
             var dsmBlockedAddressCollection = JsonConvert.DeserializeObject<DsmBlockedAddressCollection>(response.Data.ToString());
             return dsmBlockedAddressCollection;
         }

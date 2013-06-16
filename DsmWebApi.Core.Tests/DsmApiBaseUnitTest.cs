@@ -95,6 +95,11 @@
 
             items = list(null, null);
             Assert.IsNotNull(items);
+            if (!items.Any())
+            {
+                return;
+            }
+
             Assert.IsTrue(items.Any());
             Assert.AreEqual(getTotal(items), items.Count());
             T firstItem = items.First();

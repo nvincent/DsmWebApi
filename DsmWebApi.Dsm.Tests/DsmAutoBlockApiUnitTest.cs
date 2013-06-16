@@ -54,6 +54,21 @@
         }
 
         /// <summary>
+        /// Tests the <see cref="M:DsmAutoBlockApi.List(int)"/> method.
+        /// </summary>
+        [TestMethod]
+        public void TestList()
+        {
+            var dsmAutoBlockApi = this.DsmAutoBlockApi;
+            Assert.IsNotNull(dsmAutoBlockApi);
+
+            this.TestList(
+                (offset, limit) => dsmAutoBlockApi.List(offset, limit).Result,
+                blockedAddresses => ((DsmBlockedAddressCollection)blockedAddresses).Total,
+                (blockedAddress1, blockedAddress2) => blockedAddress1.Address == blockedAddress2.Address);
+        }
+
+        /// <summary>
         /// Tests the <see cref="M:DsmAutoBlockApi.GetConfig()"/> method.
         /// </summary>
         [TestMethod]
