@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using DsmWebApi.Core;
+    using DsmWebApi.Dsm.Properties;
 
     /// <summary>
     /// The DSM encrypt share API.
@@ -28,8 +29,8 @@
         /// </summary>
         /// <param name="shareName">The name of the share to mount.</param>
         /// <param name="password">The password of the share to mount.</param>
-        /// <returns>The response of the mount request.</returns>
-        public async Task<DsmApiResponse> Mount(string shareName, string password)
+        /// <returns>The task containing the mount operation.</returns>
+        public async Task Mount(string shareName, string password)
         {
             DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
@@ -41,15 +42,15 @@
                     { "share", shareName },
                     { "password", password }
                 });
-            return response;
+            this.ThrowIfError(response);
         }
 
         /// <summary>
         /// Unmounts an encrypted share.
         /// </summary>
         /// <param name="shareName">The name of the share to unmount.</param>
-        /// <returns>The response of the unmount request.</returns>
-        public async Task<DsmApiResponse> Unmount(string shareName)
+        /// <returns>The task containing the unmount operation.</returns>
+        public async Task Unmount(string shareName)
         {
             DsmApiResponse response = await this.ApiContext.Request(
                 this.ApiInfo.Path,
@@ -60,7 +61,7 @@
                 {
                     { "share", shareName }
                 });
-            return response;
+            this.ThrowIfError(response);
         }
 
         /// <summary>
@@ -77,6 +78,20 @@
                 null);
             bool supported = response.Success;
             return supported;
+        }
+
+        /// <inheritdoc />
+        protected override string ConvertErrorCodeToErrorMessage(int errorCode)
+        {
+            switch (errorCode)
+            {
+                case 401:
+                    return Resources.SharedFolderDoesNotExistMessage;
+                case 402:
+                    return Resources.InvalidPasswordMessage;
+                default:
+                    return base.ConvertErrorCodeToErrorMessage(errorCode);
+            }
         }
     }
 }

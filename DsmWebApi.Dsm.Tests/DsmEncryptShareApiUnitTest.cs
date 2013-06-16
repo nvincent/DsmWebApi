@@ -69,13 +69,9 @@
                 string shareName = ConfigurationManager.AppSettings["dsm_encryptedShare_name"];
                 string sharePassword = ConfigurationManager.AppSettings["dsm_encryptedShare_password"];
 
-                DsmApiResponse mountResponse = dsmEncryptShareApi.Mount(shareName, sharePassword).Result;
-                Assert.IsNotNull(mountResponse);
-                Assert.IsTrue(mountResponse.Success);
+                dsmEncryptShareApi.Mount(shareName, sharePassword).Wait();
 
-                DsmApiResponse unmountResponse = dsmEncryptShareApi.Unmount(shareName).Result;
-                Assert.IsNotNull(unmountResponse);
-                Assert.IsTrue(unmountResponse.Success);
+                dsmEncryptShareApi.Unmount(shareName).Wait();
             }
         }
     }
