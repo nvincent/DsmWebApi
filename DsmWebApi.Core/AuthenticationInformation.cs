@@ -11,6 +11,6 @@
         /// Gets or sets the SID of the authenticated connection.
         /// </summary>
         [JsonProperty("sid")]
-        public string SID { get; set; }
+        public string Sid { get; set; }
     }
 }

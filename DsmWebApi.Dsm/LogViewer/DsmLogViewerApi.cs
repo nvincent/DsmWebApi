@@ -1,6 +1,7 @@
 ﻿namespace DsmWebApi.Dsm.LogViewer
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using DsmWebApi.Core;
     using Newtonsoft.Json;
@@ -28,6 +29,7 @@
         /// Gets a list of supported logs on the DSM system.
         /// </summary>
         /// <returns>A list of supported logs on the DSM system.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "The async pattern requires to nest the return type in a Task.")]
         public async Task<IEnumerable<string>> Supported()
         {
             DsmApiResponse response = await this.ApiContext.Request(

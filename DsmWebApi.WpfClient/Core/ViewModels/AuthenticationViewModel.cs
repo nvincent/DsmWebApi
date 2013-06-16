@@ -95,7 +95,7 @@
         private async Task LogOn()
         {
             var authenticationInformation = await this.AuthenticationApi.LogOn(this.Account, this.Password);
-            NotificationMessage message = new NotificationMessage("Logged On as " + this.Account + " with SID = " + authenticationInformation.SID);
+            NotificationMessage message = new NotificationMessage("Logged On as " + this.Account + " with SID = " + authenticationInformation.Sid);
             Messenger.Default.Send(message);
         }
 

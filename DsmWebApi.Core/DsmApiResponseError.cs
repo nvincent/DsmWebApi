@@ -11,6 +11,6 @@
         /// Gets the error code.
         /// </summary>
         [JsonProperty("code")]
-        public int Code { get; private set; }
+        public int Code { get; set; }
     }
 }
