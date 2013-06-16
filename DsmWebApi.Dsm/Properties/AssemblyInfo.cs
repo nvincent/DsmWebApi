@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("DsmWebApi.Dsm")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Set of APIs to access the DSM module of a DSM system.")]
 #if DEBUG
 [assembly: AssemblyConfiguration("DEBUG")]
 #else

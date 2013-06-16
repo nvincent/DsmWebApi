@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Resources;
 
 [assembly: AssemblyTitle("DsmWebApi.Core")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Set of APIs to access the Core module of a DSM system.")]
 #if DEBUG
 [assembly: AssemblyConfiguration("DEBUG")]
 #else

@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("DsmWebApi.Dsm.Tests")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Unit tests of the set of APIs to access the Audio Station module of a DSM system.")]
 #if DEBUG
 [assembly: AssemblyConfiguration("DEBUG")]
 #else

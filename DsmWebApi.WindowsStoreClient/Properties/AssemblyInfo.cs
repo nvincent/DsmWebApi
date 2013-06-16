@@ -1,9 +1,8 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("DsmWebApi.WindowsStoreClient")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Windows Store application that uses the DSM Web API.")]
 #if DEBUG
 [assembly: AssemblyConfiguration("DEBUG")]
 #else

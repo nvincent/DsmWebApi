@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("DsmWebApi.DownloadStation")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Set of APIs to access the Download Station module of a DSM system.")]
 #if DEBUG
 [assembly: AssemblyConfiguration("DEBUG")]
 #else

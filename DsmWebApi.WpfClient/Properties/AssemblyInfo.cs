@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 
 [assembly: AssemblyTitle("DsmWebApi.WpfClient")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("WPF client application that uses the DSM Web API.")]
 #if DEBUG
 [assembly: AssemblyConfiguration("DEBUG")]
 #else
