@@ -17,7 +17,9 @@ using System.Resources;
 [assembly: CLSCompliant(true)]
 #endif
 
+#if !WPF
 [assembly: NeutralResourcesLanguage("en-US")]
+#endif
 
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
